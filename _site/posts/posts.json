@@ -41,6 +41,30 @@
     "input_file": {}
   },
   {
+    "path": "posts/2021-07-21-how-to-call-a-c-function-from-python/",
+    "title": "How to call a C function from Python.",
+    "description": "Need to speed up things by calling a C function from your Python script? Check this out.",
+    "author": [
+      {
+        "name": "Andrea Bonvini",
+        "url": "https://github.com/andreabonvini"
+      }
+    ],
+    "date": "2021-03-03",
+    "categories": [
+      "Coding",
+      "Performance Optimization",
+      "C",
+      "Python"
+    ],
+    "contents": "\nThis will be a really short blogpost which mainly serves as a personal reminder on how to call a C function from Python… the title is pretty self-explanatory.\nI will show how to call some really simple c functions wich return a double or an array (which will be a np.array in Python).\nHere we have our simple c file cfunctions.c:\n\n#include<stdlib.h>\n\nlong factorial(int n){\n    // \n    long res = 1;\n    if (n <= 0) {\n        return -1;\n    }\n    else {\n        for (long i = 1; i <= n; i++) {\n           res *= i;\n        }\n    }\n    return res;\n}\n\ndouble dotproduct(int dim, double a[dim], double b[dim]){\n    // Compute the dot product between two vectors...\n    // e.g. a = [1,2,3,4] , b = [4,3,2,1]\n    // res = 1*4 + 2*3 + 3*2 + 4*1 = 4 + 6 + 6 + 4 = 20\n    double res = 0;   \n    for(int i = 0; i < dim; i++){\n        res = res + a[i]*b[i];\n    }\n    return res;\n}\n\ndouble * elementwiseproduct(int dim, double a[dim], double b[dim]){\n    // Compute the elementiwise product between two vectors...\n    // e.g. a = [1,2,3,4] , b = [4,3,2,1]\n    // res will point to an array such as [1*4, 2*3, 3*2, 4*1] = [4,6,6,4]\n    double * res = (double *) malloc(sizeof(double) * dim);\n    for(int i = 0; i < dim; i++){\n        res[i] = a[i]*b[i];\n    }    \n    return res;\n}\n\nWe then create a shared object witht the following command:\n\ncc -fPIC -shared -o cfunctions.so cfunctions.c\n\nThen we can write a Python script py_cfunctions.py such as:\n\nimport ctypes\nimport numpy as np\n\ndef factorial(num: int):\n    py_cfunctions.factorial.restype = ctypes.c_long\n    return py_cfunctions.factorial(num)\n\ndef dotproduct(dim: int, a: np.array, b: np.array):\n    # Convert np.array to ctype doubles\n    a_data = a.astype(np.double)\n    a_data_p = a_data.ctypes.data_as(c_double_p)\n    b_data = b.astype(np.double)\n    b_data_p = b_data.ctypes.data_as(c_double_p)\n    py_cfunctions.dotproduct.restype = ctypes.c_double\n    # Compute result...\n    return py_cfunctions.dotproduct(dim,a_data_p,b_data_p)\n    \ndef elementwiseproduct(dim: int, a: np.array, b: np.array):\n    # Convert np.array to ctype doubles\n    a_data = a.astype(np.double)\n    a_data_p = a_data.ctypes.data_as(c_double_p)\n    b_data = b.astype(np.double)\n    b_data_p = b_data.ctypes.data_as(c_double_p)\n\n    py_cfunctions.elementwiseproduct.restype = np.ctypeslib.ndpointer(dtype=ctypes.c_double,shape=(dim,))\n    # Compute result...\n    return py_cfunctions.elementwiseproduct(dim,a_data_p,b_data_p)\n\n# so_file genreated with:\n# cc -fPIC -shared -o cfunctions.so cfunctions.c\n\nso_file = 'MY_PATH/cfunctions.so'\npy_cfunctions = ctypes.CDLL(so_file)\nc_double_p = ctypes.POINTER(ctypes.c_double)\npy_cfunctions.factorial.argtypes = [ctypes.c_int] \npy_cfunctions.elementwiseproduct.argtypes = [ctypes.c_int, c_double_p, c_double_p]\npy_cfunctions.dotproduct.argtypes= [ctypes.c_int, c_double_p, c_double_p]\n\nAnd that’s it! You now can import py_cfunctions and call factorial(), dotproduct() and elementwiseproduct().\n\n\n\n",
+    "preview": "posts/2021-07-21-how-to-call-a-c-function-from-python/c-python.png",
+    "last_modified": "2021-07-22T00:49:42+02:00",
+    "input_file": "how-to-call-a-c-function-from-python.knit.md",
+    "preview_width": 1600,
+    "preview_height": 1200
+  },
+  {
     "path": "posts/2021-07-20-a-boring-post-on-linear-regression/",
     "title": "A boring Post on Linear Regression",
     "description": "A visual and mathematical overview of Linear Regression.",

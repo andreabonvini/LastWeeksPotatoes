@@ -30,6 +30,19 @@
       <media:content url="https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function/neuron.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
+      <title>How to call a C function from Python.</title>
+      <dc:creator>Andrea Bonvini</dc:creator>
+      <link>https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python</link>
+      <description>Need to speed up things by calling a C function from your Python script? Check this out.</description>
+      <category>Coding</category>
+      <category>Performance Optimization</category>
+      <category>C</category>
+      <category>Python</category>
+      <guid>https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python</guid>
+      <pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python/c-python.png" medium="image" type="image/png" width="1600" height="1200"/>
+    </item>
+    <item>
       <title>A boring Post on Linear Regression</title>
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-20-a-boring-post-on-linear-regression</link>
