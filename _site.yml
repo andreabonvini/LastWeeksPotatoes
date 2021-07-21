@@ -1,0 +1,23 @@
+name: "LastWeeksPotatoes"
+title: "Last Week's Potatoes"
+description: |
+  Random thoughts and notes on Computer Vision, Machine Learning, and Computational Neuroscience
+output_dir: "_site"
+theme: theme.css
+navbar:
+  right:
+    - text: "Home"
+      href: index.html
+    - text: "About"
+      href: about.html
+output: distill::distill_article
+base_url: https://lastweekspotatoes.com
+collections:
+  posts:
+    categories: true
+    categories_metadata: true
+    authors_metadata: true
+    disqus: last-weeks-potatoes
+    share: [twitter, linkedin]
+    custom: _custom.html
+

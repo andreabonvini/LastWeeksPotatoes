@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
+  <url>
+    <loc>https://lastweekspotatoes.com/about.html</loc>
+    <lastmod>2021-07-20T14:56:41+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://lastweekspotatoes.com/</loc>
+    <lastmod>2021-07-20T19:36:17+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://lastweekspotatoes.com/posts/2021-07-20-support-vector-machines/</loc>
+    <lastmod>2021-07-20T22:09:51+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function/</loc>
+    <lastmod>2021-07-20T22:11:12+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://lastweekspotatoes.com/posts/2021-07-20-a-boring-post-on-linear-regression/</loc>
+    <lastmod>2021-07-20T22:40:44+02:00</lastmod>
+  </url>
+</urlset>

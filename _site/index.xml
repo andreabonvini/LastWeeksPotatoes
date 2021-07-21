@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss xmlns:atom="http://www.w3.org/2005/Atom" xmlns:media="http://search.yahoo.com/mrss/" xmlns:content="http://purl.org/rss/1.0/modules/content/" xmlns:dc="http://purl.org/dc/elements/1.1/" version="2.0">
+  <channel>
+    <title>Last Week's Potatoes</title>
+    <link>https://lastweekspotatoes.com</link>
+    <atom:link href="https://lastweekspotatoes.com/index.xml" rel="self" type="application/rss+xml"/>
+    <description>Random thoughts and notes on Computer Vision, Machine Learning, and Computational Neuroscience
+</description>
+    <generator>Distill</generator>
+    <lastBuildDate>Tue, 20 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Support Vector Machines</title>
+      <dc:creator>Andrea Bonvini</dc:creator>
+      <link>https://lastweekspotatoes.com/posts/2021-07-20-support-vector-machines</link>
+      <description>The math behind the Support Vector Machines algorithm.</description>
+      <category>Machine Learning</category>
+      <category>Classification</category>
+      <guid>https://lastweekspotatoes.com/posts/2021-07-20-support-vector-machines</guid>
+      <pubDate>Tue, 20 Jul 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://lastweekspotatoes.com/posts/2021-07-20-support-vector-machines/media/outer_points2D-white.png" medium="image" type="image/png" width="1675" height="1662"/>
+    </item>
+    <item>
+      <title>The Hazard Function</title>
+      <dc:creator>Andrea Bonvini</dc:creator>
+      <link>https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function</link>
+      <description>What is the Hazard Function in the context of Survival Analysis? How can we apply it in Computational Neuroscience?</description>
+      <category>Computational Neuroscience</category>
+      <guid>https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function</guid>
+      <pubDate>Tue, 20 Jul 2021 00:00:00 +0000</pubDate>
+      <media:content url="https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function/neuron.jpg" medium="image" type="image/jpeg"/>
+    </item>
+    <item>
+      <title>A boring Post on Linear Regression</title>
+      <dc:creator>Andrea Bonvini</dc:creator>
+      <link>https://lastweekspotatoes.com/posts/2021-07-20-a-boring-post-on-linear-regression</link>
+      <description>A visual and mathematical overview of Linear Regression.</description>
+      <category>Machine Learning</category>
+      <category>Regression</category>
+      <guid>https://lastweekspotatoes.com/posts/2021-07-20-a-boring-post-on-linear-regression</guid>
+      <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
+      <media:content url="https://lastweekspotatoes.com/posts/2021-07-20-a-boring-post-on-linear-regression/preview.png" medium="image" type="image/png" width="2478" height="1738"/>
+    </item>
+  </channel>
+</rss>

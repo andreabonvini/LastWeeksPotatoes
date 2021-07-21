@@ -1,0 +1,19 @@
+---
+title: "About Me"
+description: |
+  My name is [Andrea Bonvini](https://github.com/andreabonvini) and I'm currently a MSc student in Biomedical Engineering at Politecnico di Milano, this site is a sort of collection of notes and thoughts on topics I'm passionate about (mainly *Computer Vision*, *Machine Learning*, and *Computational Neuroscience*).
+  
+  If you're wondering where the title of the blog comes from:
+    
+  *“For instance, the scientific article may say, 'The radioactive phosphorus content of the cerebrum of the rat decreases to one-half in a period of two weeks.' Now what does that mean? It means that phosphorus that is in the brain of a rat—and also in mine, and yours—is not the same phosphorus as it was two weeks ago. It means the atoms that are in the brain are being replaced: the ones that were there before have gone away. So what is this mind of ours: what are these atoms with consciousness? Last week's potatoes! They now can remember what was going on in my mind a year ago—a mind which has long ago been replaced. To note that the thing I call my individuality is only a pattern or dance, that is what it means when one discovers how long it takes for the atoms of the brain to be replaced by other atoms. The atoms come into my brain, dance a dance, and then go out—there are always new atoms, but always doing the same dance, remembering what the dance was yesterday.”*
+  
+  ― ***Richard Feynman***, *What Do You Care What Other People Think?*
+  
+
+  
+  
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE)
+```
