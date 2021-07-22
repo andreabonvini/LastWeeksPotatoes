@@ -10,6 +10,10 @@ navbar:
       href: index.html
     - text: "About"
       href: about.html
+  source_url: https://github.com/andreabonvini/LastWeeksPotatoes
+  # logo:
+  #   image: images/github.png
+
 output: distill::distill_article
 base_url: https://lastweekspotatoes.com
 collections:
@@ -17,7 +21,7 @@ collections:
     categories: true
     categories_metadata: true
     authors_metadata: true
-    disqus: last-weeks-potatoes
+    disqus: lastweekspotatoes
     share: [twitter, linkedin]
     custom: _custom.html
 

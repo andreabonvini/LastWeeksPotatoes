@@ -1,7 +1,13 @@
 ---
 title: "About Me"
 description: |
-  My name is [Andrea Bonvini](https://github.com/andreabonvini) and I'm currently a MSc student in Biomedical Engineering at Politecnico di Milano, this site is a sort of collection of notes and thoughts on topics I'm passionate about (mainly *Computer Vision*, *Machine Learning*, and *Computational Neuroscience*).
+---
+
+<span itemscope itemtype="http://schema.org/Person">
+
+<img src="images/me.png" style="display:block; margin: 0 auto; width: 33%">
+
+My name is ***Andrea Bonvini*** and I'm currently a MSc student in Information Bioengineering at Politecnico di Milano, this site is a sort of collection of notes and thoughts on topics I'm passionate about (mainly *Computer Vision*, *Machine Learning*, and *Computational Neuroscience*).
   
   If you're wondering where the title of the blog comes from:
     
@@ -9,11 +15,34 @@ description: |
   
   ― ***Richard Feynman***, *What Do You Care What Other People Think?*
   
+<br>
+<div style='text-align: center;  color: #d46708'>
+<span itemprop="name" style="font-variant: small-caps; color: #d46708; font-size: 120%">Andrea Bonvini</span>
 
-  
-  
----
-
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = FALSE)
-```
+<a style='color: #d46708' href="mailto:a.bonvini96@gmail.com" title="Email me" class = 'social-icon'><span class="fa-stack fa-lg" aria-hidden="true">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-envelope fa-stack-1x fa-inverse"></i>
+</span>
+<span class="sr-only">Email me</span>
+</a>
+<a style='color: #d46708'href="https://github.com/andreabonvini" title="GitHub" class = 'social-icon'>
+  <span class="fa-stack fa-lg" aria-hidden="true">
+    <i class="fa fa-circle fa-stack-2x"></i>
+    <i class="fa fa-github fa-stack-1x fa-inverse"></i>
+  </span>
+  <span class="sr-only">GitHub</span>
+</a>
+<a style='color: #d46708' href="https://linkedin.com/in/andreabonvini" title="LinkedIn" class = 'social-icon'><span class="fa-stack fa-lg" aria-hidden="true">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
+</span>
+<span class="sr-only">LinkedIn</span>
+</a>
+</a>
+<a style='color: #d46708' href="https://www.instagram.com/andrea.bonvini" title="Instagram" class = 'social-icon'><span class="fa-stack fa-lg" aria-hidden="true">
+  <i class="fa fa-circle fa-stack-2x"></i>
+  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
+</span>
+<span class="sr-only">Instagram</span>
+</a>
+</div>
