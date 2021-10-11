@@ -9,6 +9,10 @@ date: 12-14-2020
 output:
   distill::distill_article:
     self_contained: false
+categories:
+  - Computer Vision
+  - Machine Learning
+  - Generative Adversarial Networks
 preview: media/preview.png
 ---
 
@@ -185,7 +189,7 @@ p_{g}(\mathbf{x})
 d\mathbf{x}
 $$
 
-This last equality comes from the Radon-Nikodym Theorem of measure theory and it’s sometimes referred as the *Law Of The Unconscious Statistician* (or LOTUS Theorem) since students have been accused of using the identity without realizing that it must be treated as the result of a rigorously proved theorem, not merely a definition (if you want the full proof check [this](https://theoptimalpolicy.github.io/2020/12/13/gans-lotus-theorem/) out!
+This last equality comes from the Radon-Nikodym Theorem of measure theory and it’s sometimes referred as the *Law Of The Unconscious Statistician* (or LOTUS Theorem) since students have been accused of using the identity without realizing that it must be treated as the result of a rigorously proved theorem, not merely a definition (if you want the full proof check [this](https://www.lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/) out! )
 
 $$
 V(\mathcal{G},\mathcal{D})

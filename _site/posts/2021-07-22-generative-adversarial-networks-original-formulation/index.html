@@ -127,7 +127,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Generative Adversarial Networks (Original Formulation)"]},{"type":"character","attributes":{},"value":["\"Generative Adversarial Networks\" (Goodfellow et al.) Paper overview."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["12-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["media/preview.png"]},{"type":"character","attributes":{},"value":["https://lastweekspotatoes.com/posts/2021-07-22-generative-adversarial-networks-original-formulation/"]},{"type":"character","attributes":{},"value":["https://lastweekspotatoes.com/posts/2021-07-22-generative-adversarial-networks-original-formulation/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["Generative Adversarial Networks (Original Formulation)"]},{"type":"character","attributes":{},"value":["\"Generative Adversarial Networks\" (Goodfellow et al.) Paper overview."]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["12-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Computer Vision","Machine Learning","Generative Adversarial Networks"]},{"type":"character","attributes":{},"value":["media/preview.png"]},{"type":"character","attributes":{},"value":["https://lastweekspotatoes.com/posts/2021-07-22-generative-adversarial-networks-original-formulation/"]},{"type":"character","attributes":{},"value":["https://lastweekspotatoes.com/posts/2021-07-22-generative-adversarial-networks-original-formulation/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2439,6 +2439,11 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="d-title">
 <h1>Generative Adversarial Networks (Original Formulation)</h1>
 <!--radix_placeholder_categories-->
+<div class="dt-tags">
+  <a href="../../index.html#category:Computer_Vision" class="dt-tag">Computer Vision</a>
+  <a href="../../index.html#category:Machine_Learning" class="dt-tag">Machine Learning</a>
+  <a href="../../index.html#category:Generative_Adversarial_Networks" class="dt-tag">Generative Adversarial Networks</a>
+</div>
 <!--/radix_placeholder_categories-->
 <p><p>“Generative Adversarial Networks” (Goodfellow et al.) Paper overview.</p></p>
 </div>
@@ -2578,7 +2583,7 @@ p_{g}(\mathbf{x})
 \right)
 d\mathbf{x}
 \]</span></p>
-<p>This last equality comes from the Radon-Nikodym Theorem of measure theory and it’s sometimes referred as the <em>Law Of The Unconscious Statistician</em> (or LOTUS Theorem) since students have been accused of using the identity without realizing that it must be treated as the result of a rigorously proved theorem, not merely a definition (if you want the full proof check <a href="https://theoptimalpolicy.github.io/2020/12/13/gans-lotus-theorem/">this</a> out!</p>
+<p>This last equality comes from the Radon-Nikodym Theorem of measure theory and it’s sometimes referred as the <em>Law Of The Unconscious Statistician</em> (or LOTUS Theorem) since students have been accused of using the identity without realizing that it must be treated as the result of a rigorously proved theorem, not merely a definition (if you want the full proof check <a href="https://www.lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/">this</a> out! )</p>
 <p><span class="math display">\[
 V(\mathcal{G},\mathcal{D})
 =\int_{\mathbf{x}}
