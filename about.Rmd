@@ -7,7 +7,7 @@ description: |
 
 <img src="images/me.png" style="display:block; margin: 0 auto; width: 33%">
 
-My name is ***Andrea Bonvini*** and I recently completed a MSc in Biomedical Engineering at Politecnico di Milanof, this site is a sort of collection of notes and thoughts on topics I'm passionate about (mainly *Computer Vision*, *Machine Learning*, and *Computational Neuroscience*).
+My name is ***Andrea Bonvini*** and I recently completed a MSc in Biomedical Engineering at Politecnico di Milano, this site is a sort of collection of notes and thoughts on topics I'm passionate about (mainly *Computer Vision*, *Machine Learning*, and *Computational Neuroscience*).
   
   If you're wondering where the title of the blog comes from:
     
