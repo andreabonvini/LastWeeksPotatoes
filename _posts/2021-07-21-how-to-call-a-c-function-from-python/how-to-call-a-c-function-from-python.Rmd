@@ -11,10 +11,9 @@ output:
     self_contained: false
 preview: c-python.png
 categories:
-  - Coding
-  - Performance Optimization
-  - C
-  - Python
+  - Software Engineering
+  - c
+  - python
 ---
 
 ```{r setup, include=FALSE}

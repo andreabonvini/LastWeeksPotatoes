@@ -2,11 +2,15 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.sitemaps.org/schemas/sitemap/0.9 http://www.sitemaps.org/schemas/sitemap/0.9/sitemap.xsd" version="1.0">
   <url>
     <loc>https://lastweekspotatoes.com/about.html</loc>
-    <lastmod>2021-10-20T22:31:08+02:00</lastmod>
+    <lastmod>2022-07-27T15:36:19+02:00</lastmod>
   </url>
   <url>
     <loc>https://lastweekspotatoes.com/</loc>
     <lastmod>2021-07-20T19:36:17+02:00</lastmod>
+  </url>
+  <url>
+    <loc>https://lastweekspotatoes.com/posts/2022-06-20-getting-lazy-with-cpp/</loc>
+    <lastmod>2022-08-28T13:57:16+02:00</lastmod>
   </url>
   <url>
     <loc>https://lastweekspotatoes.com/posts/2021-07-20-support-vector-machines/</loc>
@@ -26,7 +30,7 @@
   </url>
   <url>
     <loc>https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python/</loc>
-    <lastmod>2021-07-22T00:49:43+02:00</lastmod>
+    <lastmod>2022-08-27T22:56:04+02:00</lastmod>
   </url>
   <url>
     <loc>https://lastweekspotatoes.com/posts/2021-07-22-the-vc-dimension/</loc>

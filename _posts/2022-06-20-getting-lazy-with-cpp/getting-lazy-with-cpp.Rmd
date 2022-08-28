@@ -1,0 +1,214 @@
+---
+title: "Getting Lazy with Cpp"
+description: |
+  How to easily create a lazy generator in cpp.
+author:
+  - name: Andrea Bonvini
+    url: https://github.com/andreabonvini
+date: 06-20-2022
+output:
+  distill::distill_article:
+    self_contained: false
+categories:
+  - Software Engineering
+  - cpp
+preview: preview.jpeg
+  
+---
+
+When coding in Python, it may happen that we make use of the so-called *generators*. A *generator* is a function that contains at least one *yield* statement (it may contain other yield or return statements). Both yield and return will return some value from this function.
+
+The difference is that while a *return* statement terminates a function entirely, *yield* statement pauses the function saving all its states and later continues from there on successive calls.
+This comes in handy when we want to generate elements in lazy-fashion without the need to create a real *iterator*.
+
+Unfortunately in cpp we don't have *generators* and we have to rely exclusively on *iterators*, the good news is that as long as we understand some basic concepts we are good to go.
+
+To illustrate this concept, we'll create a generator of Fibonacci numbers as an example.
+
+Here it is a Fibonacci generator in Python:
+
+```{python, fib-py, results='asis'}
+def fibonacci(n: int):
+    current = 1
+    old = 1
+    for _ in range(n):
+        yield current
+        tmp = current 
+        current = current + old
+        old = tmp
+    
+for val in fibonacci(10):
+    print(val)
+```
+
+
+Let's start by checking what will be the usage of our generator in a generic cpp executable:
+
+```{Rcpp, ex-1,  eval=FALSE}
+
+int main() {
+    // Create a generator instance for retrieving the first 10 Fibonacci numbers.
+    auto fibonacciGenerator = FibonacciGenerator(10); // 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+    // Ideally, we want to use range-based for loop
+    for(auto el: fibonacciGenerator) {
+      std::cout << el << std.:endl;
+    }
+}
+
+```
+
+This is just syntactic sugar for the following code:
+
+```{Rcpp, ex-2,  eval=FALSE}
+for(auto it = fibonacciIterator.begin(); it != fibonacciIterator.end(); it++) {
+        // Case1: for(auto el: fibonacciGenerator){ // do stuff }
+        // Observe that we are creating a copy by value 
+        // (but since we're dealing with unsigned long variables, this is costless)
+        auto elem = *it;
+  
+        // Case2: for(auto& el: fibonacciGenerator){ // do stuff }
+        // Now you're directly modifying the elements
+        // because elem1 is an lvalue reference
+        // auto& elem1 = *it;
+        
+        // Case3: for(const auto& el: fibonacciGenerator){ // do stuff }
+        // You just want to read stuff, no modification allowed
+        // const auto& elem3 = *it;
+        
+        std::cout << elem << std::endl;
+        
+        }
+
+```
+
+
+So we somehow have to define two methods `FibonacciGenerator::begin()` and `FibonacciGenerator::end()`, these two methods have to return an iterator object (`it`) that will contain useful information about the starting and final configuration of our `FibonacciGenerator` instance. So we may define an `Iterator` struct inside our `FibonacciGenerator` class as
+
+```{Rcpp, fibonacci-generator,  eval=FALSE}
+
+class FibonacciGenerator {
+public:
+    // ============================ Start Iterator definition ================================
+    struct Iterator
+    {
+      // ...
+    }
+    // ============================ End Iterator definition ==================================
+
+    explicit FibonacciGenerator(unsigned int n){
+        this->n = n;
+    }
+
+    Iterator begin(){
+        // We will use an index to denote the current state of the fibonacci sequence
+        // When we instantiate a FibonacciGenerator object this index will be 0.
+        return FibonacciGenerator::Iterator(this, 0);
+    }
+    Iterator end(){
+        // At the end of the generation process, this index will be exactly n.
+        return FibonacciGenerator::Iterator(this, n);
+    }
+
+```
+
+Before looking at the actual implementation of the `Iterator` struct, we observe that all we need to do is to override the following operators:
+
+- `operator()*`
+- `operator()++`
+- `operator==(Iterator other)`
+- `operator!=(Iterator other)`
+
+`operator()*` will have the task of dereferencing the value that we want to retrieve at each iteration, `operator()++` will instead actually *update* our value (and for that we will use an helper function `FibonacciGenerator::Iterator::update()`, what will carry out the actual new-value generation process), while the last two operators will be necessary for the ending condition of our range-based for loop.
+
+Here it is a possible implementation:
+
+```{Rcpp, fibonacci-generator-complete, eval=FALSE}
+
+#include <iostream>
+
+
+class FibonacciGenerator {
+public:
+    // ============================ Start Iterator definition ================================
+    struct Iterator
+    {
+    public:
+        using obj_type = FibonacciGenerator;
+        // Constructor definition (used in FibonacciSequence::begin() and
+        //  FibonacciSequence::end())
+        explicit Iterator(obj_type* obj_ptr, unsigned long index): obj_ptr_ {obj_ptr}, index_ {index} {}
+        // In case of a Fibonacci sequence we want our value to be 
+        //  just a number (unsigned long to be precise)
+        using value_type = unsigned long;
+        using reference = const value_type&;
+
+        // Pre-increment operator
+        value_type operator++() { increment(); return obj_ptr_->current_; }
+        // Post-increment operator
+        value_type operator++(int) { value_type x = obj_ptr_->current_; increment(); return x; }
+        
+        // Dereference operator, will return the current value saved in FibonacciGenerator.
+        reference operator*() const { return obj_ptr_->current_; }
+
+        bool operator==(Iterator other) const { return this->index_ == other.index_; }
+        bool operator!=(Iterator other) const { return this->index_ != other.index_; }
+        
+    private:
+
+        obj_type* obj_ptr_;
+        unsigned long index_;
+
+        void increment()
+        {
+            unsigned long tmp;
+            tmp = obj_ptr_->current_;
+            // Fibonacci update.
+            obj_ptr_->current_ = obj_ptr_->current_ + obj_ptr_->old_;
+            obj_ptr_->old_ = tmp;
+            // Of course we need to incremen the Iterator index.
+            index_++;
+        }
+    };
+
+    // ============================ End Iterator definition ==================================
+
+    explicit FibonacciGenerator(unsigned int n){
+        // n represents the maximum length of the Fibonacci sequence created by an instance of FibonacciGenerator
+        this->n = n;
+    }
+
+    Iterator begin(){
+        // We will use an index to denote the current state of the fibonacci sequence
+        // When we instantiate a FibonacciGenerator object this index will be 0.
+        return FibonacciGenerator::Iterator(this, 0);
+    }
+    Iterator end(){
+        // At the end of the generation process, this index will be exactly n.
+        return FibonacciGenerator::Iterator(this, n);
+    }
+
+
+
+private:
+    // Here we can define all the variables we need to carry out our generation process
+    unsigned long n;
+    unsigned long current_ = 1;
+    unsigned long old_ = 1;
+
+};
+
+
+
+int main() {
+    auto fibonacciGenerator = FibonacciGenerator(10); // 1, 2, 3, 5, 8, 13, 21, 34, 55, 89
+    for(auto el: fibonacciGenerator) {
+      std::cout << el << std::endl;
+    }
+}
+
+```
+
+
+
+
+

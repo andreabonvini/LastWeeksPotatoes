@@ -7,7 +7,18 @@
     <description>Random thoughts and notes on Computer Vision, Machine Learning, and Computational Neuroscience
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Tue, 20 Jul 2021 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Getting Lazy with Cpp</title>
+      <dc:creator>Andrea Bonvini</dc:creator>
+      <link>https://lastweekspotatoes.com/posts/2022-06-20-getting-lazy-with-cpp</link>
+      <description>How to easily create a lazy generator in cpp.</description>
+      <category>Software Engineering</category>
+      <category>cpp</category>
+      <guid>https://lastweekspotatoes.com/posts/2022-06-20-getting-lazy-with-cpp</guid>
+      <pubDate>Sun, 19 Jun 2022 00:00:00 +0000</pubDate>
+      <media:content url="https://lastweekspotatoes.com/posts/2022-06-20-getting-lazy-with-cpp/preview.jpeg" medium="image" type="image/jpeg"/>
+    </item>
     <item>
       <title>Support Vector Machines</title>
       <dc:creator>Andrea Bonvini</dc:creator>
@@ -55,10 +66,9 @@
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python</link>
       <description>Need to speed up things by calling a C function from your Python script? Check this out.</description>
-      <category>Coding</category>
-      <category>Performance Optimization</category>
-      <category>C</category>
-      <category>Python</category>
+      <category>Software Engineering</category>
+      <category>c</category>
+      <category>python</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python</guid>
       <pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate>
       <media:content url="https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python/c-python.png" medium="image" type="image/png" width="1600" height="1200"/>
