@@ -11,7 +11,6 @@ output:
     self_contained: false
 categories:
   - Computational Neuroscience
-preview: neuron.jpg
 ---
 In *Survival Analysis* we are interested in understanding the *risk* of an event happening at a particular point in time, where time is a continuous variable.
 

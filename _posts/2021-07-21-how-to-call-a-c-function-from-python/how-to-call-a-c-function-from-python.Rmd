@@ -9,7 +9,6 @@ date: 03-03-2021
 output:
   distill::distill_article:
     self_contained: false
-preview: c-python.png
 categories:
   - Software Engineering
   - c

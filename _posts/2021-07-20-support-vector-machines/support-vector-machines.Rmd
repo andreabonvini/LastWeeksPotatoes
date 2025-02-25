@@ -14,7 +14,6 @@ output:
     self_contained: true
     toc: true
     toc_depth: 2
-preview: media/outer_points2D-white.png
 ---
 
 
