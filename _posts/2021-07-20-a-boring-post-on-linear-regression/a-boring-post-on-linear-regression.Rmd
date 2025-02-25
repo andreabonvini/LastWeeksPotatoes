@@ -12,7 +12,6 @@ output:
 categories:
   - Machine Learning
   - Regression
-preview: preview.png
   
 ---
 *Regression* is one of the main problems tackled by *machine learning*.

@@ -12,8 +12,6 @@ output:
 categories:
   - Computer Vision
   - Machine Learning
-  - Generative Adversarial Networks
-preview: media/preview.png
 ---
 
 

@@ -12,7 +12,6 @@ output:
 categories:
   - Machine Learning
   - Classification
-preview: media/perc.png
 ---
 
 
