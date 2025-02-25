@@ -21,7 +21,7 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>The VC dimension.</title>
@@ -111,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","preview"]}},"value":[{"type":"character","attributes":{},"value":["The VC dimension."]},{"type":"character","attributes":{},"value":["A quick explanation of the VC dimension.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["02-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Machine Learning","Classification"]},{"type":"character","attributes":{},"value":["media/perc.png"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["The VC dimension."]},{"type":"character","attributes":{},"value":["A quick explanation of the VC dimension.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["02-14-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Machine Learning","Classification"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -428,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1263,7 +1261,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1274,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1373,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1395,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1434,8 +1468,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="the-vc-dimension_files/header-attrs-2.9/header-attrs.js"></script>
-  <script src="the-vc-dimension_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="the-vc-dimension_files/header-attrs-2.16/header-attrs.js"></script>
+  <script src="the-vc-dimension_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="the-vc-dimension_files/popper-2.6.0/popper.min.js"></script>
   <link href="the-vc-dimension_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="the-vc-dimension_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1455,7 +1489,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"The VC dimension.","description":"A quick explanation of the VC dimension.","authors":[{"author":"Andrea Bonvini","authorURL":"https://github.com/andreabonvini","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-14T00:00:00.000+00:00","citationText":"Bonvini, 2021"}
+{"title":"The VC dimension.","description":"A quick explanation of the VC dimension.","authors":[{"author":"Andrea Bonvini","authorURL":"https://github.com/andreabonvini","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-02-14T00:00:00.000+01:00","citationText":"Bonvini, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1468,29 +1502,40 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>The VC dimension.</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">Machine Learning</div>
-<div class="dt=tag">Classification</div>
+<div class="dt-tag">Machine Learning</div>
+<div class="dt-tag">Classification</div>
 </div>
 <!--/radix_placeholder_categories-->
 <p><p>A quick explanation of the VC dimension.</p></p>
 </div>
 
 <div class="d-byline">
-  Andrea Bonvini <a href="https://github.com/andreabonvini" class="uri">https://github.com/andreabonvini</a> 
+  Andrea Bonvini <a href="https://github.com/andreabonvini"
+class="uri">https://github.com/andreabonvini</a> 
   
 <br/>02-14-2021
 </div>
 
 <div class="d-article">
-<p>When talking about <em>binary classification</em>, an <em>hypothesis</em> is a function that maps an input from the entire <em>input space</em> to a result: <span class="math display">\[
+<p>When talking about <em>binary classification</em>, an
+<em>hypothesis</em> is a function that maps an input from the entire
+<em>input space</em> to a result: <span class="math display">\[
 h:\mathcal{X}\to\{-1,+1\}
-\]</span> The number of hypotheses <span class="math inline">\(\vert\mathcal{H}\vert\)</span> can be infinite.</p>
-<p>A <em>dichotomy</em> is a hypothesis that maps from an input from the <em>sample size</em> to a result:</p>
+\]</span> The number of hypotheses <span
+class="math inline">\(\vert\mathcal{H}\vert\)</span> can be
+infinite.</p>
+<p>A <em>dichotomy</em> is a hypothesis that maps from an input from the
+<em>sample size</em> to a result:</p>
 <p><span class="math display">\[
 h:\{\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N\}\to\{-1,+1\}
 \]</span></p>
-<p>The number of <em>dichotomies</em> <span class="math inline">\(\vert\mathcal{H}(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N )\vert\)</span> is at most <span class="math inline">\(2^N\)</span>, where <span class="math inline">\(N\)</span> is the sample size.</p>
-<p>e.g. for a sample size <span class="math inline">\(N = 3\)</span> we have at most <span class="math inline">\(8\)</span> possible dichotomies:</p>
+<p>The number of <em>dichotomies</em> <span
+class="math inline">\(\vert\mathcal{H}(\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N
+)\vert\)</span> is at most <span class="math inline">\(2^N\)</span>,
+where <span class="math inline">\(N\)</span> is the sample size.</p>
+<p>e.g. for a sample size <span class="math inline">\(N = 3\)</span> we
+have at most <span class="math inline">\(8\)</span> possible
+dichotomies:</p>
 <pre><code>        x1 x2 x3
 1       -1 -1 -1
 2       -1 -1 +1
@@ -1501,40 +1546,82 @@ h:\{\mathbf{x}_1,\mathbf{x}_2,\dots,\mathbf{x}_N\}\to\{-1,+1\}
 7       +1 +1 -1
 8       +1 +1 +1
 </code></pre>
-<p>The <em>growth function</em> is a function that counts the <em>most</em> dichotomies on any <span class="math inline">\(N\)</span> points. <span class="math display">\[
+<p>The <em>growth function</em> is a function that counts the
+<em>most</em> dichotomies on any <span class="math inline">\(N\)</span>
+points. <span class="math display">\[
 m_{\mathcal{H}}(N)=\underset{\mathbf{x}_1,\dots,\mathbf{x}_N\in\mathcal{X}}{max}\vert\mathcal{H}(\mathbf{x}_1,\dots,\mathbf{x}_N)\vert
-\]</span> This translates into choosing any <span class="math inline">\(N\)</span> points and laying them out in <em>any</em> fashion in the input space. Determining <span class="math inline">\(m\)</span> is equivalent to looking for such a layout of the <span class="math inline">\(N\)</span> points that yields the <em>most</em> dichotomies.</p>
+\]</span> This translates into choosing any <span
+class="math inline">\(N\)</span> points and laying them out in
+<em>any</em> fashion in the input space. Determining <span
+class="math inline">\(m\)</span> is equivalent to looking for such a
+layout of the <span class="math inline">\(N\)</span> points that yields
+the <em>most</em> dichotomies.</p>
 <p>The growth function satisfies: <span class="math display">\[
 m_{\mathcal{H}}(N)\le 2^N
-\]</span> This can be applied to the perceptron. For example, when <span class="math inline">\(N=4\)</span>, we can lay out the points so that they are easily separated. However, given a layout, we must then consider all possible configurations of labels on the points, one of which is the following:</p>
+\]</span> This can be applied to the perceptron. For example, when <span
+class="math inline">\(N=4\)</span>, we can lay out the points so that
+they are easily separated. However, given a layout, we must then
+consider all possible configurations of labels on the points, one of
+which is the following:</p>
 <center>
 <img src="media/perc.png" style="width:40.0%" />
 </center>
-<p>This is where the perceptron breaks down because it <em>cannot</em> separate that configuration, and so <span class="math inline">\(m_{\mathcal{H}}(4)=14\)</span> because two configurations—this one and the one in which the left/right points are blue and top/bottom are red—cannot be represented. For this reason, we have to expect that for perceptrons, <span class="math inline">\(m\)</span> can’t be <span class="math inline">\(2^4\)</span>.</p>
-<p>The <em>VC</em> ( <em>Vapnik-Chervonenkis ) dimension</em> of a hypothesis set <span class="math inline">\(\mathcal{H}\)</span> , denoted by <span class="math inline">\(d_{VC}(\mathcal{H})\)</span> is the largest value of <span class="math inline">\(N\)</span> for which <span class="math inline">\(m_{\mathcal{H}}(N)=2^N\)</span> , in other words is “<em>the most points <span class="math inline">\(\mathcal{H}\)</span> can shatter</em>”</p>
-<p>We can say that the <em>VC</em> dimension is one of many measures that characterize the expressive power, or capacity, of a hypothesis class.</p>
-<p>You can think of the VC dimension as “how many points can this model class memorize/shatter?” (a ton? <span class="math inline">\(\to\)</span> BAD! not so many? <span class="math inline">\(\to\)</span> GOOD!).</p>
-<p>With respect to learning, the effect of the VC dimension is that if the VC dimension is finite, then the hypothesis will generalize:</p>
+<p>This is where the perceptron breaks down because it <em>cannot</em>
+separate that configuration, and so <span
+class="math inline">\(m_{\mathcal{H}}(4)=14\)</span> because two
+configurations—this one and the one in which the left/right points are
+blue and top/bottom are red—cannot be represented. For this reason, we
+have to expect that for perceptrons, <span
+class="math inline">\(m\)</span> can’t be <span
+class="math inline">\(2^4\)</span>.</p>
+<p>The <em>VC</em> ( <em>Vapnik-Chervonenkis ) dimension</em> of a
+hypothesis set <span class="math inline">\(\mathcal{H}\)</span> ,
+denoted by <span class="math inline">\(d_{VC}(\mathcal{H})\)</span> is
+the largest value of <span class="math inline">\(N\)</span> for which
+<span class="math inline">\(m_{\mathcal{H}}(N)=2^N\)</span> , in other
+words is “<em>the most points <span
+class="math inline">\(\mathcal{H}\)</span> can shatter</em>”</p>
+<p>We can say that the <em>VC</em> dimension is one of many measures
+that characterize the expressive power, or capacity, of a hypothesis
+class.</p>
+<p>You can think of the VC dimension as “how many points can this model
+class memorize/shatter?” (a ton? <span
+class="math inline">\(\to\)</span> BAD! not so many? <span
+class="math inline">\(\to\)</span> GOOD!).</p>
+<p>With respect to learning, the effect of the VC dimension is that if
+the VC dimension is finite, then the hypothesis will generalize:</p>
 <p><span class="math display">\[
-d_{vc}(\mathcal H)\ \Longrightarrow\ g \in \mathcal H \text { will generalize }
+d_{vc}(\mathcal H)\ \Longrightarrow\ g \in \mathcal H \text { will
+generalize }
 \]</span></p>
-<p>The key observation here is that this statement is independent of:</p>
+<p>The key observation here is that this statement is independent
+of:</p>
 <ul>
 <li>The learning algorithm</li>
 <li>The input distribution</li>
 <li>The target function</li>
 </ul>
-<p>The only things that factor into this are the training examples, the hypothesis set, and the final hypothesis.</p>
-<p>The VC dimension for a linear classifier (i.e. a <em>line</em> in 2D, a <em>plane</em> in 3D etc…) is <span class="math inline">\(d+1\)</span> (a line can shatter at most <span class="math inline">\(2+1=3\)</span> points, a plane can shatter at most <span class="math inline">\(3+1=4\)</span> points etc…)</p>
-<p>Proof: <a href="http://wittawat.com/posts/vc_dimension_linear_classifier.html">here</a></p>
-<p>How many randomly drawn examples sufﬁce to guarantee error of at most <span class="math inline">\(\epsilon\)</span> with probability at least (1−<span class="math inline">\(\delta\)</span>)?</p>
+<p>The only things that factor into this are the training examples, the
+hypothesis set, and the final hypothesis.</p>
+<p>The VC dimension for a linear classifier (i.e. a <em>line</em> in 2D,
+a <em>plane</em> in 3D etc…) is <span class="math inline">\(d+1\)</span>
+(a line can shatter at most <span class="math inline">\(2+1=3\)</span>
+points, a plane can shatter at most <span
+class="math inline">\(3+1=4\)</span> points etc…)</p>
+<p>Proof: <a
+href="http://wittawat.com/posts/vc_dimension_linear_classifier.html">here</a></p>
+<p>How many randomly drawn examples sufﬁce to guarantee error of at most
+<span class="math inline">\(\epsilon\)</span> with probability at least
+(1−<span class="math inline">\(\delta\)</span>)?</p>
 <p><span class="math display">\[
 N\ge\frac{1}{\epsilon}\left(4\log\left(\frac{2}{\delta}\right)+8VC(H)\log_2\left(\frac{13}{\epsilon}\right)\right)
 \]</span></p>
 <p><em>PAC BOUND using VC dimension</em>: <span class="math display">\[
-L_{true}(h)\le L_{train}(h)+\sqrt{\frac{VC(H)\left(\ln\frac{2N}{VC(H)}+1\right)+\ln\frac{4}{\delta}}{N}}
+L_{true}(h)\le
+L_{train}(h)+\sqrt{\frac{VC(H)\left(\ln\frac{2N}{VC(H)}+1\right)+\ln\frac{4}{\delta}}{N}}
 \]</span></p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb2"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

@@ -21,7 +21,7 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
 <title>Last Week's Potatoes: LOTUS Theorem in original GANs formulation.</title>
@@ -102,20 +104,14 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <meta property="og:type" content="article"/>
 <meta property="og:description" content="How do we apply the Law Of The Unconcious Statistician to Ian Goodfellow&#39;s original GANs value function formulation?"/>
 <meta property="og:url" content="https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/"/>
-<meta property="og:image" content="https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/media/preview.png"/>
-<meta property="og:image:width" content="576"/>
-<meta property="og:image:height" content="216"/>
 <meta property="og:locale" content="en_US"/>
 <meta property="og:site_name" content="Last Week&#39;s Potatoes"/>
 
 <!--  https://dev.twitter.com/cards/types/summary -->
-<meta property="twitter:card" content="summary_large_image"/>
+<meta property="twitter:card" content="summary"/>
 <meta property="twitter:title" content="Last Week&#39;s Potatoes: LOTUS Theorem in original GANs formulation."/>
 <meta property="twitter:description" content="How do we apply the Law Of The Unconcious Statistician to Ian Goodfellow&#39;s original GANs value function formulation?"/>
 <meta property="twitter:url" content="https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/"/>
-<meta property="twitter:image" content="https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/media/preview.png"/>
-<meta property="twitter:image:width" content="576"/>
-<meta property="twitter:image:height" content="216"/>
 
 <!--  https://scholar.google.com/intl/en/scholar/inclusion.html#indexing -->
 <meta name="citation_title" content="Last Week&#39;s Potatoes: LOTUS Theorem in original GANs formulation."/>
@@ -127,7 +123,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
 <script type="text/json" id="radix-rmarkdown-metadata">
-{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","preview","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["LOTUS Theorem in original GANs formulation."]},{"type":"character","attributes":{},"value":["How do we apply the Law Of The Unconcious Statistician to Ian Goodfellow's original GANs value function formulation?"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["12-11-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Computer Vision","Machine Learning","Generative Adversarial Networks"]},{"type":"character","attributes":{},"value":["media/preview.png"]},{"type":"character","attributes":{},"value":["https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/"]},{"type":"character","attributes":{},"value":["https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/"]}]}
+{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","citation_url","canonical_url"]}},"value":[{"type":"character","attributes":{},"value":["LOTUS Theorem in original GANs formulation."]},{"type":"character","attributes":{},"value":["How do we apply the Law Of The Unconcious Statistician to Ian Goodfellow's original GANs value function formulation?"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["12-11-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Computer Vision","Machine Learning"]},{"type":"character","attributes":{},"value":["https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/"]},{"type":"character","attributes":{},"value":["https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/"]}]}
 </script>
 <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -2422,8 +2418,8 @@ d-appendix d-footnote-list a.footnote-backlink {
   color: var(--hover-color, white);
 }</style>
 <!--/radix_placeholder_distill-->
-  <script src="../../site_libs/header-attrs-2.9/header-attrs.js"></script>
-  <script src="../../site_libs/jquery-1.11.3/jquery.min.js"></script>
+  <script src="../../site_libs/header-attrs-2.16/header-attrs.js"></script>
+  <script src="../../site_libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="../../site_libs/popper-2.6.0/popper.min.js"></script>
   <link href="../../site_libs/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="../../site_libs/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -2474,27 +2470,39 @@ d-appendix d-footnote-list a.footnote-backlink {
 <div class="dt-tags">
   <a href="../../index.html#category:Computer_Vision" class="dt-tag">Computer Vision</a>
   <a href="../../index.html#category:Machine_Learning" class="dt-tag">Machine Learning</a>
-  <a href="../../index.html#category:Generative_Adversarial_Networks" class="dt-tag">Generative Adversarial Networks</a>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>How do we apply the Law Of The Unconcious Statistician to Ian Goodfellow’s original GANs value function formulation?</p></p>
+<p><p>How do we apply the Law Of The Unconcious Statistician to Ian
+Goodfellow’s original GANs value function formulation?</p></p>
 </div>
 
 <div class="d-byline">
-  Andrea Bonvini <a href="https://github.com/andreabonvini" class="uri">https://github.com/andreabonvini</a> 
+  Andrea Bonvini <a href="https://github.com/andreabonvini"
+class="uri">https://github.com/andreabonvini</a> 
   
 <br/>12-11-2020
 </div>
 
 <div class="d-article">
-<p>In this brief we want to prove a passage of the original GANs Paper by Ian Goodfellow. Specifically, we want to prove that the following equation is satisfied:</p>
+<p>In this brief we want to prove a passage of the original GANs Paper
+by Ian Goodfellow. Specifically, we want to prove that the following
+equation is satisfied:</p>
 <p><span class="math display">\[
 \int_{\mathbf{z}}p_{z}(\mathbf{z})\log(1-\mathcal{D}(\mathcal{G}(\mathbf{z})))d\mathbf{z}
 =
 \int_{\mathbf{x}}p_{g}(\mathbf{x})
 \log(1-\mathcal{D}(\mathbf{x}))
 d\mathbf{x}
-\]</span> For a continuous random variable <span class="math inline">\(\mathbf{z}\)</span>, let <span class="math inline">\(\mathbf{x} = \mathcal{G}(\mathbf{z})\)</span> and <span class="math inline">\(\mathbf{z}=\mathcal{G}^{-1}(\mathbf{x})\)</span> suppose that <span class="math inline">\(\mathcal{G}\)</span> is differentiable and that its inverse <span class="math inline">\(\mathcal{G}^{-1}\)</span> is monotonic. By the formula for inverse functions and differentiation we have that <span class="math display">\[
+\]</span> For a continuous random variable <span
+class="math inline">\(\mathbf{z}\)</span>, let <span
+class="math inline">\(\mathbf{x} = \mathcal{G}(\mathbf{z})\)</span> and
+<span
+class="math inline">\(\mathbf{z}=\mathcal{G}^{-1}(\mathbf{x})\)</span>
+suppose that <span class="math inline">\(\mathcal{G}\)</span> is
+differentiable and that its inverse <span
+class="math inline">\(\mathcal{G}^{-1}\)</span> is monotonic. By the
+formula for inverse functions and differentiation we have that <span
+class="math display">\[
 \frac{d\mathbf{z}}{d \mathbf{x}}\cdot
 \frac{d \mathbf{x}}{d \mathbf{z}}
 =
@@ -2525,7 +2533,9 @@ d\mathbf{z}
 \frac
 {1}
 {\mathcal{G}^{&#39;}(\mathcal{G}^{-1}(\mathbf{x}))}d\mathbf{x}
-\]</span> so that by a change of variables we can rewrite everything in function of <span class="math inline">\(\mathbf{x}\)</span>, <span class="math display">\[
+\]</span> so that by a change of variables we can rewrite everything in
+function of <span class="math inline">\(\mathbf{x}\)</span>, <span
+class="math display">\[
 \int_{-\infty}^{\infty}
 p_{z}(\mathbf{z})
 \log
@@ -2561,7 +2571,11 @@ p_{z}(\mathbf{z})
 1-\mathcal{D}(\mathbf{x})
 \right)
 d\mathbf{x}=
-\]</span> Now, notice that the cumulative distribution function <span class="math inline">\(P_\mathbf{X}(\mathbf{x}):\mathbb{R}^n\to[0,1]\)</span> is <span class="math inline">\(P_\mathbf{X}(\mathbf{x})=Pr(\mathbf{X}&lt;\mathbf{x})=Pr(X_1\leq x_1,X_2\leq x_2,\dots,X_n\leq x_n)\)</span>, we observe that:</p>
+\]</span> Now, notice that the cumulative distribution function <span
+class="math inline">\(P_\mathbf{X}(\mathbf{x}):\mathbb{R}^n\to[0,1]\)</span>
+is <span
+class="math inline">\(P_\mathbf{X}(\mathbf{x})=Pr(\mathbf{X}&lt;\mathbf{x})=Pr(X_1\leq
+x_1,X_2\leq x_2,\dots,X_n\leq x_n)\)</span>, we observe that:</p>
 <p><span class="math display">\[
 P_\mathbf{X}(\mathbf{x})=
 \]</span> <span class="math display">\[
@@ -2575,16 +2589,27 @@ P_{\mathbf{Z}}(\mathcal{G}^{-1}(\mathbf{x}))
 \]</span> From here <span class="math display">\[
 P_\mathbf{X}(\mathbf{x})=P_{\mathbf{Z}}(\mathcal{G}^{-1}(\mathbf{x}))\\
 P_\mathbf{X}(\mathbf{x})=P_{\mathbf{Z}}(\mathbf{z})
-\]</span> We take the derivative w.r.t <span class="math inline">\(\mathbf{x}\)</span>: <span class="math display">\[
-\frac{dP_\mathbf{X}(\mathbf{x})}{d\mathbf{x}} =\frac{P_{\mathbf{Z}}(\mathbf{z})}{d\mathbf{x}}
+\]</span> We take the derivative w.r.t <span
+class="math inline">\(\mathbf{x}\)</span>: <span class="math display">\[
+\frac{dP_\mathbf{X}(\mathbf{x})}{d\mathbf{x}}
+=\frac{P_{\mathbf{Z}}(\mathbf{z})}{d\mathbf{x}}
 \]</span> <span class="math display">\[
-\frac{dP_\mathbf{X}(\mathbf{x})}{d\mathbf{x}} =\frac{P_{\mathbf{Z}}(\mathbf{z})}{d\mathbf{z}}\frac{d\mathbf{z}}{d\mathbf{x}}
+\frac{dP_\mathbf{X}(\mathbf{x})}{d\mathbf{x}}
+=\frac{P_{\mathbf{Z}}(\mathbf{z})}{d\mathbf{z}}\frac{d\mathbf{z}}{d\mathbf{x}}
 \]</span> <span class="math display">\[
-p_{X}(\mathbf{x}) = p_{\mathbf{z}}(\mathbf{z})\frac{1}{\mathcal{G}^{&#39;}(\mathcal{G}^{-1}(\mathbf{x}))}
-\]</span> For clarity we rename <span class="math inline">\(p_{X}(\mathbf{x})\)</span> as <span class="math inline">\(p_{g}(\mathbf{x})\)</span> since it represents the distribution learned from our generator <span class="math inline">\(\mathcal{G}\)</span>, we have <span class="math display">\[
-\color{blue}{p_{g}(\mathbf{x}) = p_{\mathbf{z}}(\mathbf{z})\frac{1}{\mathcal{G}^{&#39;}(\mathcal{G}^{-1}(\mathbf{x}))}}
+p_{X}(\mathbf{x}) =
+p_{\mathbf{z}}(\mathbf{z})\frac{1}{\mathcal{G}^{&#39;}(\mathcal{G}^{-1}(\mathbf{x}))}
+\]</span> For clarity we rename <span
+class="math inline">\(p_{X}(\mathbf{x})\)</span> as <span
+class="math inline">\(p_{g}(\mathbf{x})\)</span> since it represents the
+distribution learned from our generator <span
+class="math inline">\(\mathcal{G}\)</span>, we have <span
+class="math display">\[
+\color{blue}{p_{g}(\mathbf{x}) =
+p_{\mathbf{z}}(\mathbf{z})\frac{1}{\mathcal{G}^{&#39;}(\mathcal{G}^{-1}(\mathbf{x}))}}
 \]</span></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
