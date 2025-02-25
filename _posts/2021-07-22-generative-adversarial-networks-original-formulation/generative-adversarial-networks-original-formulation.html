@@ -21,7 +21,7 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>Generative Adversarial Networks (Original Formulation)</title>
@@ -111,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","preview"]}},"value":[{"type":"character","attributes":{},"value":["Generative Adversarial Networks (Original Formulation)"]},{"type":"character","attributes":{},"value":["\"Generative Adversarial Networks\" (Goodfellow et al.) Paper overview.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["12-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Computer Vision","Machine Learning","Generative Adversarial Networks"]},{"type":"character","attributes":{},"value":["media/preview.png"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["Generative Adversarial Networks (Original Formulation)"]},{"type":"character","attributes":{},"value":["\"Generative Adversarial Networks\" (Goodfellow et al.) Paper overview.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["12-14-2020"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Computer Vision","Machine Learning"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -428,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1263,7 +1261,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1274,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1373,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1395,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1434,8 +1468,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="generative-adversarial-networks-original-formulation_files/header-attrs-2.9/header-attrs.js"></script>
-  <script src="generative-adversarial-networks-original-formulation_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="generative-adversarial-networks-original-formulation_files/header-attrs-2.16/header-attrs.js"></script>
+  <script src="generative-adversarial-networks-original-formulation_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="generative-adversarial-networks-original-formulation_files/popper-2.6.0/popper.min.js"></script>
   <link href="generative-adversarial-networks-original-formulation_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="generative-adversarial-networks-original-formulation_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1455,7 +1489,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"Generative Adversarial Networks (Original Formulation)","description":"\"Generative Adversarial Networks\" (Goodfellow et al.) Paper overview.","authors":[{"author":"Andrea Bonvini","authorURL":"https://github.com/andreabonvini","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-14T00:00:00.000+00:00","citationText":"Bonvini, 2020"}
+{"title":"Generative Adversarial Networks (Original Formulation)","description":"\"Generative Adversarial Networks\" (Goodfellow et al.) Paper overview.","authors":[{"author":"Andrea Bonvini","authorURL":"https://github.com/andreabonvini","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2020-12-14T00:00:00.000+01:00","citationText":"Bonvini, 2020"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1468,49 +1502,99 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>Generative Adversarial Networks (Original Formulation)</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">Computer Vision</div>
-<div class="dt=tag">Machine Learning</div>
-<div class="dt=tag">Generative Adversarial Networks</div>
+<div class="dt-tag">Computer Vision</div>
+<div class="dt-tag">Machine Learning</div>
 </div>
 <!--/radix_placeholder_categories-->
-<p><p>“Generative Adversarial Networks” (Goodfellow et al.) Paper overview.</p></p>
+<p><p>“Generative Adversarial Networks” (Goodfellow et al.) Paper
+overview.</p></p>
 </div>
 
 <div class="d-byline">
-  Andrea Bonvini <a href="https://github.com/andreabonvini" class="uri">https://github.com/andreabonvini</a> 
+  Andrea Bonvini <a href="https://github.com/andreabonvini"
+class="uri">https://github.com/andreabonvini</a> 
   
 <br/>12-14-2020
 </div>
 
 <div class="d-article">
-<p>Let’s start with a question: <em>what is Generative Modeling?</em></p>
-<p>Generative modeling is an <strong><em>unsupervised learning</em></strong> task in machine learning that involves automatically discovering and learning the regularities or patterns in input data in such a way that the model can be used to <em>generate or output new examples</em> that plausibly could have been drawn from the original dataset.</p>
-<p>GANs are a clever way of training a generative model by framing the problem as a <strong><em>supervised learning</em></strong> problem with two sub-models: the <strong><em>generator</em></strong> model that we train to generate new examples, and the <strong><em>discriminator</em></strong> model that tries to classify examples as either real (from the domain) or fake (generated).</p>
+<p>Let’s start with a question: <em>what is Generative
+Modeling?</em></p>
+<p>Generative modeling is an <strong><em>unsupervised
+learning</em></strong> task in machine learning that involves
+automatically discovering and learning the regularities or patterns in
+input data in such a way that the model can be used to <em>generate or
+output new examples</em> that plausibly could have been drawn from the
+original dataset.</p>
+<p>GANs are a clever way of training a generative model by framing the
+problem as a <strong><em>supervised learning</em></strong> problem with
+two sub-models: the <strong><em>generator</em></strong> model that we
+train to generate new examples, and the
+<strong><em>discriminator</em></strong> model that tries to classify
+examples as either real (from the domain) or fake (generated).</p>
 <h3 id="formulation">Formulation</h3>
 <ul>
-<li><p>Generator <span class="math inline">\(\mathcal{G}\)</span>: produces realistic samples e.g. taking as input some random noise. <span class="math inline">\(\mathcal{G}\)</span> tries to fool the discriminator</p></li>
-<li><p>Discriminator <span class="math inline">\(\mathcal{D}\)</span> that takes as input an image and assess whether it is real or generated by <span class="math inline">\(\mathcal{G}\)</span></p></li>
+<li><p>Generator <span class="math inline">\(\mathcal{G}\)</span>:
+produces realistic samples e.g. taking as input some random noise. <span
+class="math inline">\(\mathcal{G}\)</span> tries to fool the
+discriminator</p></li>
+<li><p>Discriminator <span class="math inline">\(\mathcal{D}\)</span>
+that takes as input an image and assess whether it is real or generated
+by <span class="math inline">\(\mathcal{G}\)</span></p></li>
 </ul>
-<p>Both <span class="math inline">\(\mathcal{D}\)</span> and <span class="math inline">\(\mathcal{G}\)</span> are conveniently chosen as MLPs. The generative process depends on two networks:</p>
+<p>Both <span class="math inline">\(\mathcal{D}\)</span> and <span
+class="math inline">\(\mathcal{G}\)</span> are conveniently chosen as
+MLPs. The generative process depends on two networks:</p>
 <ul>
-<li><p><span class="math inline">\(\mathcal{D} =\mathcal{D}(\mathbf{x},\theta_d)\)</span></p></li>
-<li><p><span class="math inline">\(\mathcal{G} =\mathcal{G}(\mathbf{z},\theta_g)\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal{D}
+=\mathcal{D}(\mathbf{x},\theta_d)\)</span></p></li>
+<li><p><span class="math inline">\(\mathcal{G}
+=\mathcal{G}(\mathbf{z},\theta_g)\)</span></p></li>
 </ul>
-<p><span class="math inline">\(\theta_g\)</span> and <span class="math inline">\(\theta_d\)</span> are the network parameters, <span class="math inline">\(\mathbf{x}\in\mathbb{R}^n\)</span> is an input image (either real or generated by <span class="math inline">\(\mathcal{G}\)</span>) and <span class="math inline">\(\mathbf{z}\in\mathbb{R}^d\)</span> is some random noise to be fed to the generator. We suppose that <span class="math inline">\(\mathbf{x}\)</span> is sampled from a distribution <span class="math inline">\(p_{data}\)</span> <span class="math inline">\((\)</span>i.e. <span class="math inline">\(\mathbf{x}\sim p_{data}(\mathbf{x}))\)</span> and <span class="math inline">\(\mathbf{z}\)</span> is sampled from a distribution <span class="math inline">\(p_z\)</span> <span class="math inline">\((\)</span>i.e. <span class="math inline">\(\mathbf{z}\sim p_z(\mathbf{z}))\)</span>. Our Discriminator’s output is to be seen as the probability that the input image comes from the data and not from the generator: <span class="math display">\[
+<p><span class="math inline">\(\theta_g\)</span> and <span
+class="math inline">\(\theta_d\)</span> are the network parameters,
+<span class="math inline">\(\mathbf{x}\in\mathbb{R}^n\)</span> is an
+input image (either real or generated by <span
+class="math inline">\(\mathcal{G}\)</span>) and <span
+class="math inline">\(\mathbf{z}\in\mathbb{R}^d\)</span> is some random
+noise to be fed to the generator. We suppose that <span
+class="math inline">\(\mathbf{x}\)</span> is sampled from a distribution
+<span class="math inline">\(p_{data}\)</span> <span
+class="math inline">\((\)</span>i.e. <span
+class="math inline">\(\mathbf{x}\sim p_{data}(\mathbf{x}))\)</span> and
+<span class="math inline">\(\mathbf{z}\)</span> is sampled from a
+distribution <span class="math inline">\(p_z\)</span> <span
+class="math inline">\((\)</span>i.e. <span
+class="math inline">\(\mathbf{z}\sim p_z(\mathbf{z}))\)</span>. Our
+Discriminator’s output is to be seen as the probability that the input
+image comes from the data and not from the generator: <span
+class="math display">\[
 \mathcal{D}(\cdot,\theta_d):\mathbb{R}^n \to [0,1]
 \]</span></p>
-<p>The generator gives as output a generated image: <span class="math display">\[
+<p>The generator gives as output a generated image: <span
+class="math display">\[
 \mathcal{G}(\cdot,\theta_d):\mathbb{R}^d \to \mathbb{R}^n
 \]</span> A <em>good discriminator</em> is such that:</p>
 <ul>
-<li><p><span class="math inline">\(\mathcal{D}(\mathbf{x},\theta_d)\)</span> is maximum when <span class="math inline">\(\mathbf{x} \in X\)</span> (i.e. <span class="math inline">\(\mathbf{x}\)</span> is sampled for the real images dataset <span class="math inline">\(X\)</span>)</p></li>
-<li><p><span class="math inline">\(1 - \mathcal{D}(\mathbf{x},\theta_d)\)</span> is maximum when <span class="math inline">\(\mathbf{x}\)</span> was generated by <span class="math inline">\(\mathcal{G}\)</span></p></li>
-<li><p><span class="math inline">\(1 - \mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d)\)</span> is maximum when <span class="math inline">\(\mathbf{z} \sim p_z(\mathbb{z})\)</span></p></li>
+<li><p><span
+class="math inline">\(\mathcal{D}(\mathbf{x},\theta_d)\)</span> is
+maximum when <span class="math inline">\(\mathbf{x} \in X\)</span>
+(i.e. <span class="math inline">\(\mathbf{x}\)</span> is sampled for the
+real images dataset <span class="math inline">\(X\)</span>)</p></li>
+<li><p><span class="math inline">\(1 -
+\mathcal{D}(\mathbf{x},\theta_d)\)</span> is maximum when <span
+class="math inline">\(\mathbf{x}\)</span> was generated by <span
+class="math inline">\(\mathcal{G}\)</span></p></li>
+<li><p><span class="math inline">\(1 -
+\mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d)\)</span> is
+maximum when <span class="math inline">\(\mathbf{z} \sim
+p_z(\mathbb{z})\)</span></p></li>
 </ul>
-<p>Training <span class="math inline">\(\mathcal{D}\)</span> consists in maximizing the binary cross-entropy:</p>
+<p>Training <span class="math inline">\(\mathcal{D}\)</span> consists in
+maximizing the binary cross-entropy:</p>
 <p><span class="math display">\[
 \underset{\theta_d}{\text{max}}
-\left(\ 
+\left(\
 \mathbb{E}_{\mathbf{x}\sim p_{data}(\mathbf{x})}
 [\log\mathcal{D}(\mathbf{x},\theta_d)]
 +
@@ -1520,72 +1604,105 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 \]</span></p>
 <p>Where</p>
 <ul>
-<li><span class="math inline">\(\mathcal{D}(\mathbf{x},\theta_d)\)</span> has to be <span class="math inline">\(1\)</span> since <span class="math inline">\(\mathbf{x} \sim p_{data}(\mathbf{x})\)</span>, namely images are real.</li>
-<li><span class="math inline">\(\mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d)\)</span> has to be <span class="math inline">\(0\)</span> since <span class="math inline">\(\mathcal{G}(\mathbf{z},\theta_g)\)</span> is a generated (fake) image.</li>
+<li><span
+class="math inline">\(\mathcal{D}(\mathbf{x},\theta_d)\)</span> has to
+be <span class="math inline">\(1\)</span> since <span
+class="math inline">\(\mathbf{x} \sim p_{data}(\mathbf{x})\)</span>,
+namely images are real.</li>
+<li><span
+class="math inline">\(\mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d)\)</span>
+has to be <span class="math inline">\(0\)</span> since <span
+class="math inline">\(\mathcal{G}(\mathbf{z},\theta_g)\)</span> is a
+generated (fake) image.</li>
 </ul>
-<p>A <em>good generator</em> <span class="math inline">\(\mathcal{G}\)</span> is one that makes <span class="math inline">\(\mathcal{D}\)</span> fail:</p>
+<p>A <em>good generator</em> <span
+class="math inline">\(\mathcal{G}\)</span> is one that makes <span
+class="math inline">\(\mathcal{D}\)</span> fail:</p>
 <p><span class="math display">\[
 \underset{\theta_g}{\text{min}}
 \left(
 \underset{\theta_d}{\text{max}}
-\left(\ 
+\left(\
 \mathbb{E}_{\mathbf{x}\sim p_{data}(\mathbf{x})}
 [\log\mathcal{D}(\mathbf{x},\theta_d)]
 +
 \mathbb{E}_{\mathbf{z}\sim p_z(\mathbf{z})}
 \log[1-\mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d)]
-\ 
+\
 \right)
 \right)
 \]</span></p>
-<p>Optimizing <span class="math inline">\(\mathcal{D}\)</span> to completion in the inner loop of training is computationally prohibitive, and on finite datasets would result in overfitting. Instead, we alternate between <span class="math inline">\(k\)</span> steps of optimizing <span class="math inline">\(\mathcal{D}\)</span> and one step of optimizing <span class="math inline">\(\mathcal{G}\)</span>. This results in <span class="math inline">\(\mathcal{D}\)</span> being maintained near its optimal solution, as long as <span class="math inline">\(\mathcal{G}\)</span> changes slowly enough.</p>
+<p>Optimizing <span class="math inline">\(\mathcal{D}\)</span> to
+completion in the inner loop of training is computationally prohibitive,
+and on finite datasets would result in overfitting. Instead, we
+alternate between <span class="math inline">\(k\)</span> steps of
+optimizing <span class="math inline">\(\mathcal{D}\)</span> and one step
+of optimizing <span class="math inline">\(\mathcal{G}\)</span>. This
+results in <span class="math inline">\(\mathcal{D}\)</span> being
+maintained near its optimal solution, as long as <span
+class="math inline">\(\mathcal{G}\)</span> changes slowly enough.</p>
 <p>Let’s schematize it:</p>
-<p>We need to solve by an iterative numerical approach the min max game shown at <span class="math inline">\((4)\)</span>. In order to do so we alternate:</p>
+<p>We need to solve by an iterative numerical approach the min max game
+shown at <span class="math inline">\((4)\)</span>. In order to do so we
+alternate:</p>
 <ul>
-<li><p><span class="math inline">\(k\)</span>-steps of Stochastic Gradient Ascent w.r.t. <span class="math inline">\(\theta_d\)</span> to solve</p>
+<li><p><span class="math inline">\(k\)</span>-steps of Stochastic
+Gradient Ascent w.r.t. <span class="math inline">\(\theta_d\)</span> to
+solve</p>
 <p><span class="math display">\[
   \underset{\theta_d}{\text{max}}
-  \left(\ 
+  \left(\
   \mathbb{E}_{\mathbf{x}\sim p_{data}(\mathbf{x})}
   [\log\mathcal{D}(\mathbf{x},\theta_d)]
   +
   \mathbb{E}_{\mathbf{z}\sim p_z(\mathbf{z})}
   \log[1-\mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d)]
-  \ 
+  \
   \right)
   \]</span></p></li>
-<li><p><span class="math inline">\(1\)</span>-step of Stochastic Gradient Descent w.r.t. <span class="math inline">\(\theta_g\)</span> being <span class="math inline">\(\theta_d\)</span> fixed:</p>
+<li><p><span class="math inline">\(1\)</span>-step of Stochastic
+Gradient Descent w.r.t. <span class="math inline">\(\theta_g\)</span>
+being <span class="math inline">\(\theta_d\)</span> fixed:</p>
 <p><span class="math display">\[
   \underset{\theta_g}{\text{min}}
-  \left(\ 
+  \left(\
   \mathbb{E}_{\mathbf{x}\sim p_{data}(\mathbf{x})}
   [\log\mathcal{D}(\mathbf{x},\theta_d)]
   +
   \mathbb{E}_{\mathbf{z}\sim p_z(\mathbf{z})}
   \log[1-\mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d)]
-  \ 
+  \
   \right)
   \]</span></p>
-<p>i.e. (the removed term does not depend on <span class="math inline">\(\theta_g\)</span>)</p>
+<p>i.e. (the removed term does not depend on <span
+class="math inline">\(\theta_g\)</span>)</p>
 <p><span class="math display">\[
   \underset{\theta_g}{\text{min}}
-  \left(\ 
+  \left(\
   \mathbb{E}_{\mathbf{z}\sim p_z(\mathbf{z})}
   [\log(1-\mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d))]
-  \ 
+  \
   \right)
   \]</span></p>
 <p>i.e.</p>
 <p><span class="math display">\[
   \underset{\theta_g}{\text{max}}
-  \left(\ 
+  \left(\
   \mathbb{E}_{\mathbf{z}\sim\phi_z}
   [\log\mathcal{D}(\mathcal{G}(\mathbf{z},\theta_g),\theta_d)]
-  \ 
+  \
   \right)
   \]</span></p></li>
 </ul>
-<p>There is a reason why Goodfellow proposed to optimize <span class="math inline">\(\log(\mathcal{D}(\cdot))\)</span> instead of <span class="math inline">\(\log(1-\mathcal{D}(\cdot))\)</span>. If we try to descend the gradient of <span class="math inline">\(\log(1-\mathcal{D}(x))\)</span>, we notice that at the beginning of the training process, when the generated samples would be easily classified as “fake” (i.e. <span class="math inline">\(\mathcal{D}(x) \sim 0\)</span>), there would be too few gradient in order to learn properly!</p>
+<p>There is a reason why Goodfellow proposed to optimize <span
+class="math inline">\(\log(\mathcal{D}(\cdot))\)</span> instead of <span
+class="math inline">\(\log(1-\mathcal{D}(\cdot))\)</span>. If we try to
+descend the gradient of <span
+class="math inline">\(\log(1-\mathcal{D}(x))\)</span>, we notice that at
+the beginning of the training process, when the generated samples would
+be easily classified as “fake” (i.e. <span
+class="math inline">\(\mathcal{D}(x) \sim 0\)</span>), there would be
+too few gradient in order to learn properly!</p>
 <p><img src="media/plots.png" style="zoom:70%" /></p>
 <p><img src="media/plot1.png" style="zoom:70%" /></p>
 <p><img src="media/plot2.png" style="zoom:70%" /></p>
@@ -1593,7 +1710,9 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <p><span class="math display">\[
 V(\mathcal{G},\mathcal{D})
 =
-\mathbb{E}_{\mathbf{x}\sim p_{\text{data}}(\mathbf{x})}\log(\mathcal{D}(\mathbf{x}))\mathbf{x}+\mathbb{E}_{\mathbf{z}\sim p_{z}(\mathbf{z})}\log(1-\mathcal{D}(\mathcal{G}(\mathbf{z}))d\mathbf{z}
+\mathbb{E}_{\mathbf{x}\sim
+p_{\text{data}}(\mathbf{x})}\log(\mathcal{D}(\mathbf{x}))\mathbf{x}+\mathbb{E}_{\mathbf{z}\sim
+p_{z}(\mathbf{z})}\log(1-\mathcal{D}(\mathcal{G}(\mathbf{z}))d\mathbf{z}
 \]</span></p>
 <p><span class="math display">\[
 =\int_{\mathbf{x}}p_{\text{data}}(\mathbf{x})\log(\mathcal{D}(\mathbf{x}))d\mathbf{x}
@@ -1611,7 +1730,14 @@ p_{g}(\mathbf{x})
 \right)
 d\mathbf{x}
 \]</span></p>
-<p>This last equality comes from the Radon-Nikodym Theorem of measure theory and it’s sometimes referred as the <em>Law Of The Unconscious Statistician</em> (or LOTUS Theorem) since students have been accused of using the identity without realizing that it must be treated as the result of a rigorously proved theorem, not merely a definition (if you want the full proof check <a href="https://www.lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/">this</a> out! )</p>
+<p>This last equality comes from the Radon-Nikodym Theorem of measure
+theory and it’s sometimes referred as the <em>Law Of The Unconscious
+Statistician</em> (or LOTUS Theorem) since students have been accused of
+using the identity without realizing that it must be treated as the
+result of a rigorously proved theorem, not merely a definition (if you
+want the full proof check <a
+href="https://www.lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/">this</a>
+out! )</p>
 <p><span class="math display">\[
 V(\mathcal{G},\mathcal{D})
 =\int_{\mathbf{x}}
@@ -1624,7 +1750,12 @@ p_{g}(\mathbf{x})
 \right)
 d\mathbf{x}
 \]</span></p>
-<p>Let’s first consider the optimal discriminator <span class="math inline">\(\mathcal{D}\)</span> for any given generator <span class="math inline">\(\mathcal{G}\)</span>. The training criterion for the discriminator <span class="math inline">\(\mathcal{D}\)</span>, given any generator <span class="math inline">\(\mathcal{G}\)</span>, is to maximize the quantity defined below:</p>
+<p>Let’s first consider the optimal discriminator <span
+class="math inline">\(\mathcal{D}\)</span> for any given generator <span
+class="math inline">\(\mathcal{G}\)</span>. The training criterion for
+the discriminator <span class="math inline">\(\mathcal{D}\)</span>,
+given any generator <span class="math inline">\(\mathcal{G}\)</span>, is
+to maximize the quantity defined below:</p>
 <p><span class="math display">\[
 \underset{\mathcal{D}}{\text{argmax}}\left(V(\mathcal{G},\mathcal{D})\right)
 =\underset{\mathcal{D}}{\text{argmax}}\left(\int_{\mathbf{x}}
@@ -1638,7 +1769,13 @@ p_{g}(\mathbf{x})
 d\mathbf{x}
 \right)
 \]</span></p>
-<p>For the individual sample <span class="math inline">\(\mathbf{x}\)</span> we derive <span class="math inline">\(V(\mathcal{G},\mathcal{D})\)</span> w.r.t. <span class="math inline">\(\mathcal{D}(\mathbf{x})\)</span> and we equal this quantity to <span class="math inline">\(0\)</span> in order to find the optimal discriminator <span class="math inline">\(\mathcal{D}(\mathbf{x})^{*}\)</span></p>
+<p>For the individual sample <span
+class="math inline">\(\mathbf{x}\)</span> we derive <span
+class="math inline">\(V(\mathcal{G},\mathcal{D})\)</span> w.r.t. <span
+class="math inline">\(\mathcal{D}(\mathbf{x})\)</span> and we equal this
+quantity to <span class="math inline">\(0\)</span> in order to find the
+optimal discriminator <span
+class="math inline">\(\mathcal{D}(\mathbf{x})^{*}\)</span></p>
 <p><span class="math display">\[
 \frac{d}{d\mathcal{D}(\mathbf{x})}\left(
 p_{\text{data}}(\mathbf{x})
@@ -1676,7 +1813,9 @@ p_{data}(\mathbf{x})-\mathcal{D}^{*}(\mathbf{x})\left(p_{data}(\mathbf{x})+p_{g}
 \frac{p_{data}(\mathbf{x})}{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}
 }
 \]</span></p>
-<p>Does this point represent a maximum? we have to check if the second derivative calculated in <span class="math inline">\(\mathcal{D}^{\star}\)</span> is negative.</p>
+<p>Does this point represent a maximum? we have to check if the second
+derivative calculated in <span
+class="math inline">\(\mathcal{D}^{\star}\)</span> is negative.</p>
 <p><span class="math display">\[
 \frac{d}{d\mathcal{D}(\mathbf{x})}\left(
 p_{\text{data}}(\mathbf{x})
@@ -1707,13 +1846,24 @@ p_{g}(\mathbf{x})
 \frac{d}{d\mathcal{D}(\mathbf{x})}\left(\frac{p_{data}(\mathbf{x})}{\mathcal{D}(\mathbf{x})}
 -
 \frac{p_{g}(\mathbf{x})}{1-\mathcal{D}(\mathbf{x})}\right)
-= 
+=
 -\frac{p_{data}(\mathbf{x})}{\mathcal{D}^2(\mathbf{x})}
 -
-\frac{p_{g}(\mathbf{x})}{\left(1-\mathcal{D}(\mathbf{x})\right)^2} &lt; 0
+\frac{p_{g}(\mathbf{x})}{\left(1-\mathcal{D}(\mathbf{x})\right)^2} &lt;
+0
 \]</span></p>
-<p>The quantity above is negative for every <span class="math inline">\(\mathcal{D}\)</span>, <span class="math inline">\(\mathcal{D}^*\)</span> included, since <span class="math inline">\(p_{data}(\mathbf{x})\)</span> and <span class="math inline">\(p_g(\mathbf{x})\)</span> are between <span class="math inline">\(0\)</span> and <span class="math inline">\(1\)</span>.</p>
-<p>We then can plug <span class="math inline">\(\mathcal{D^{\star}}\)</span> into <span class="math inline">\(\mathcal{V(G,D)}\)</span> and find the optimal generator <span class="math inline">\(\mathcal{G^{\star}}\)</span> as:</p>
+<p>The quantity above is negative for every <span
+class="math inline">\(\mathcal{D}\)</span>, <span
+class="math inline">\(\mathcal{D}^*\)</span> included, since <span
+class="math inline">\(p_{data}(\mathbf{x})\)</span> and <span
+class="math inline">\(p_g(\mathbf{x})\)</span> are between <span
+class="math inline">\(0\)</span> and <span
+class="math inline">\(1\)</span>.</p>
+<p>We then can plug <span
+class="math inline">\(\mathcal{D^{\star}}\)</span> into <span
+class="math inline">\(\mathcal{V(G,D)}\)</span> and find the optimal
+generator <span class="math inline">\(\mathcal{G^{\star}}\)</span>
+as:</p>
 <p><span class="math display">\[
 \int_{\mathbf{x}}\left(p_{\text{data}}(\mathbf{x})
 \log(\mathcal{D}^{\star}(\mathbf{x}))
@@ -1722,7 +1872,8 @@ p_{g}(\mathbf{x})
 \log(1-\mathcal{D}^{\star}(\mathbf{x}))\right)d\mathbf{x}
 \]</span></p>
 <p><span class="math display">\[
-\mathcal{G}^{\star} =\underset{\mathcal{G}}{\text{argmin}}\left(\int_{\mathbf{x}}
+\mathcal{G}^{\star}
+=\underset{\mathcal{G}}{\text{argmin}}\left(\int_{\mathbf{x}}
 \left(
 p_{\text{data}}(\mathbf{x})
 \log\left(\frac{p_{data}(\mathbf{x})}{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}\right)
@@ -1734,7 +1885,8 @@ d\mathbf{x}
 \right)
 \]</span></p>
 <p><span class="math display">\[
-\mathcal{G}^{\star} =\underset{\mathcal{G}}{\text{argmin}}\left(\int_{\mathbf{x}}
+\mathcal{G}^{\star}
+=\underset{\mathcal{G}}{\text{argmin}}\left(\int_{\mathbf{x}}
 \left(
 p_{\text{data}}(\mathbf{x})
 \log\left(\frac{p_{data}(\mathbf{x})}{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}\right)
@@ -1765,17 +1917,18 @@ d\mathbf{x}
 \]</span></p>
 <p><span class="math display">\[
 \mathcal{G}^{\star}=\underset{\mathcal{G}}{\text{argmin}}\left(
--\log 2\int_{\mathbf{x}}\left(p_g(\mathbf{x})+p_{data}(\mathbf{x})\right)d\mathbf{x}
+-\log
+2\int_{\mathbf{x}}\left(p_g(\mathbf{x})+p_{data}(\mathbf{x})\right)d\mathbf{x}
 +
 \int_{\mathbf{x}}
 p_{\text{data}}(\mathbf{x})
-\left(\log 2  + 
+\left(\log 2  +
 \log\left(\frac{p_{data}(\mathbf{x})}{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}
 \right)\right)d\mathbf{x}\\
- +
++
 \int_{\mathbf{x}}
 p_{\text{g}}(\mathbf{x})
-\left(\log 2  + 
+\left(\log 2  +
 \log\left(\frac{p_{g}(\mathbf{x})}{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}\right)\right)d\mathbf{x}
 \right)
 \]</span></p>
@@ -1784,10 +1937,10 @@ p_{\text{g}}(\mathbf{x})
 -\log 2 \cdot (2)
 +
 \int_{\mathbf{x}}
-p_{\text{data}}(\mathbf{x}) 
+p_{\text{data}}(\mathbf{x})
 \log\left(2\cdot\frac{p_{data}(\mathbf{x})}{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}
 \right)d\mathbf{x}\\
- +
++
 \int_{\mathbf{x}}
 p_{\text{g}}(\mathbf{x})
 \log\left(2\cdot\frac{p_{g}(\mathbf{x})}{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}\right)d\mathbf{x}
@@ -1798,10 +1951,10 @@ p_{\text{g}}(\mathbf{x})
 -\log 2^2
 +
 \int_{\mathbf{x}}
-p_{\text{data}}(\mathbf{x}) 
+p_{\text{data}}(\mathbf{x})
 \log\left(\frac{p_{data}(\mathbf{x})}{\frac{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}{2}}
 \right)d\mathbf{x}\\
- +
++
 \int_{\mathbf{x}}
 p_{\text{g}}(\mathbf{x})
 \log\left(\frac{p_{g}(\mathbf{x})}{\frac{p_{data}(\mathbf{x})+p_{g}(\mathbf{x})}{2}}\right)d\mathbf{x}
@@ -1822,13 +1975,29 @@ p_{\text{g}}(\mathbf{x})
 +
 2\cdot\mathit{JSD}(p_{data}||p_g)\right)}
 \]</span></p>
-<p>Where the <em>Kullback-Leibler divergence</em> (<em>KL</em>) and the <em>Jenson-Shannon divergence</em> (<em>JSD</em>) are quantities that measure the difference between two distributions and we know that <span class="math inline">\(\mathit{JSD}(p_{data}\vert\vert p_g)=0\)</span> only when <span class="math inline">\(p_{data} = p_g\)</span> !</p>
+<p>Where the <em>Kullback-Leibler divergence</em> (<em>KL</em>) and the
+<em>Jenson-Shannon divergence</em> (<em>JSD</em>) are quantities that
+measure the difference between two distributions and we know that <span
+class="math inline">\(\mathit{JSD}(p_{data}\vert\vert p_g)=0\)</span>
+only when <span class="math inline">\(p_{data} = p_g\)</span> !</p>
 <p><span class="math display">\[
 \implies V(\mathcal{D}^{\star}_{\mathcal{G}},\mathcal{G}) = -\log 4
 \]</span></p>
-<p><strong><em>Theorem</em></strong> <span class="math inline">\(1\)</span>:</p>
-<p>The global minimum of the virtual training criterion <span class="math display">\[V(\mathcal{D}^{\star}_{\mathcal{G}},\mathcal{G})\]</span> is achieved if and only if <span class="math inline">\(p_{g}=p_{data}\)</span>. At that point, <span class="math inline">\(V(\mathcal{D}^{\star}_{\mathcal{G}},\mathcal{G})\)</span> achieves the value <span class="math inline">\(−\log 4\)</span>.</p>
-<p>Besides, that was what we expected! We wanted our generator to learn the <em>same</em> distribution which generated the data. If we know that <span class="math inline">\(p_{data} = p_g\)</span> then it’s trivial to observe that at the end of the training process the optimal discriminator will be forced to output <span class="math inline">\(0.5\)</span> since it won’t be able to distinguish between real and fake samples anymore.</p>
+<p><strong><em>Theorem</em></strong> <span
+class="math inline">\(1\)</span>:</p>
+<p>The global minimum of the virtual training criterion <span
+class="math display">\[V(\mathcal{D}^{\star}_{\mathcal{G}},\mathcal{G})\]</span>
+is achieved if and only if <span
+class="math inline">\(p_{g}=p_{data}\)</span>. At that point, <span
+class="math inline">\(V(\mathcal{D}^{\star}_{\mathcal{G}},\mathcal{G})\)</span>
+achieves the value <span class="math inline">\(−\log 4\)</span>.</p>
+<p>Besides, that was what we expected! We wanted our generator to learn
+the <em>same</em> distribution which generated the data. If we know that
+<span class="math inline">\(p_{data} = p_g\)</span> then it’s trivial to
+observe that at the end of the training process the optimal
+discriminator will be forced to output <span
+class="math inline">\(0.5\)</span> since it won’t be able to distinguish
+between real and fake samples anymore.</p>
 <p><span class="math display">\[
 \color{blue}{\mathcal{D}^{\star}(\mathbf{x})
 =
@@ -1837,15 +2006,60 @@ p_{\text{g}}(\mathbf{x})
 \]</span></p>
 <p>But does this converge?</p>
 <p>Well, as stated in the original Paper:</p>
-<p><em>If <span class="math inline">\(\mathcal{G}\)</span> and <span class="math inline">\(\mathcal{D}\)</span> have enough capacity, and at each step of our algorithm, the discriminator is allowed to reach its optimum given <span class="math inline">\(\mathcal{G}\)</span> and <span class="math inline">\(p_g\)</span> is updated so as to improve the criterion</em> <span class="math display">\[
-\mathbb{E}_{\mathbf{x}\sim p_{data}}\left[\log\mathcal{D}^{\star}_{G}(\mathbf{x})\right] + \mathbb{E}_{\mathbf{x}\sim p_{g}}\left[\log(1-\mathcal{D}^{\star}_{G}(\mathbf{x}))\right]
+<p><em>If <span class="math inline">\(\mathcal{G}\)</span> and <span
+class="math inline">\(\mathcal{D}\)</span> have enough capacity, and at
+each step of our algorithm, the discriminator is allowed to reach its
+optimum given <span class="math inline">\(\mathcal{G}\)</span> and <span
+class="math inline">\(p_g\)</span> is updated so as to improve the
+criterion</em> <span class="math display">\[
+\mathbb{E}_{\mathbf{x}\sim
+p_{data}}\left[\log\mathcal{D}^{\star}_{G}(\mathbf{x})\right] +
+\mathbb{E}_{\mathbf{x}\sim
+p_{g}}\left[\log(1-\mathcal{D}^{\star}_{G}(\mathbf{x}))\right]
 \]</span></p>
-<p><em>then <span class="math inline">\(p_g\)</span> converges to <span class="math inline">\(p_{data}\)</span>.</em></p>
+<p><em>then <span class="math inline">\(p_g\)</span> converges to <span
+class="math inline">\(p_{data}\)</span>.</em></p>
 <p><em>Proof</em>:</p>
-<p><em>Consider</em> <span class="math inline">\(V(\mathcal{G,D})= U(p_g,\mathcal{D})\)</span> <em>as a function of</em> <span class="math inline">\(p_g\)</span> <em>as done in the above criterion. Note that</em> <span class="math inline">\(U(p_g,\mathcal{D})\)</span> <em>is convex in</em> <span class="math inline">\(p_g\)</span>.</p>
-<p><em>The subderivatives of a supremum of convex functions include the derivative of the function at the point where the maximum is attained. In other words, if</em> <span class="math inline">\(f(x)=\sup_{\alpha\in\mathcal{A}}f_\alpha(x)\)</span> <em>and</em> <span class="math inline">\(f_\alpha(x)\)</span> <em>is convex in</em> <span class="math inline">\(x\)</span> <em>for every</em> <span class="math inline">\(\alpha\)</span> , <em>then</em> <span class="math inline">\(\partial f_\beta(x) \in \partial f\)</span> <em>if</em> <span class="math inline">\(\beta=\arg\sup_{\alpha\in\mathcal{A}}f_\alpha(x)\)</span>. <em>This is equivalent to computing a gradient descent update for</em> <span class="math inline">\(p_g\)</span> <em>at the optimal</em> <span class="math inline">\(\mathcal{D}\)</span> <em>given the corresponding</em> <span class="math inline">\(\mathcal{G}\)</span>. <span class="math inline">\(\sup_\mathcal{D}U(p_g,\mathcal{D})\)</span> <em>is convex in</em> <span class="math inline">\(p_g\)</span> <em>with a unique global optima as proven in</em> <em>Theorem <span class="math inline">\(1\)</span></em>, <em>therefore with sufficiently small updates of</em> <span class="math inline">\(p_g\)</span>, <span class="math inline">\(p_g\)</span> <em>converges to</em> <span class="math inline">\(p_x\)</span>, <em>concluding the proof</em>.</p>
-<p><em>In practice, adversarial nets represent a limited family of</em> <span class="math inline">\(p_g\)</span> <em>distributions via the function</em> <span class="math inline">\(\mathcal{G}(\mathbf{z};\theta_g)\)</span>, <em>and we optimise</em> <span class="math inline">\(\theta_g\)</span> <em>rather than</em> <span class="math inline">\(p_g\)</span> <em>itself</em>. <em>Using a multilayer perceptron to define</em> <span class="math inline">\(\mathcal{G}\)</span> <em>introduces multiple critical points in parameter space. However, the excellent performance of multilayer perceptrons in practice suggests that they are a reasonable model to use despite their lack of theoretical guarantees.</em></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<p><em>Consider</em> <span class="math inline">\(V(\mathcal{G,D})=
+U(p_g,\mathcal{D})\)</span> <em>as a function of</em> <span
+class="math inline">\(p_g\)</span> <em>as done in the above criterion.
+Note that</em> <span class="math inline">\(U(p_g,\mathcal{D})\)</span>
+<em>is convex in</em> <span class="math inline">\(p_g\)</span>.</p>
+<p><em>The subderivatives of a supremum of convex functions include the
+derivative of the function at the point where the maximum is attained.
+In other words, if</em> <span
+class="math inline">\(f(x)=\sup_{\alpha\in\mathcal{A}}f_\alpha(x)\)</span>
+<em>and</em> <span class="math inline">\(f_\alpha(x)\)</span> <em>is
+convex in</em> <span class="math inline">\(x\)</span> <em>for every</em>
+<span class="math inline">\(\alpha\)</span> , <em>then</em> <span
+class="math inline">\(\partial f_\beta(x) \in \partial f\)</span>
+<em>if</em> <span
+class="math inline">\(\beta=\arg\sup_{\alpha\in\mathcal{A}}f_\alpha(x)\)</span>.
+<em>This is equivalent to computing a gradient descent update for</em>
+<span class="math inline">\(p_g\)</span> <em>at the optimal</em> <span
+class="math inline">\(\mathcal{D}\)</span> <em>given the
+corresponding</em> <span class="math inline">\(\mathcal{G}\)</span>.
+<span class="math inline">\(\sup_\mathcal{D}U(p_g,\mathcal{D})\)</span>
+<em>is convex in</em> <span class="math inline">\(p_g\)</span> <em>with
+a unique global optima as proven in</em> <em>Theorem <span
+class="math inline">\(1\)</span></em>, <em>therefore with sufficiently
+small updates of</em> <span class="math inline">\(p_g\)</span>, <span
+class="math inline">\(p_g\)</span> <em>converges to</em> <span
+class="math inline">\(p_x\)</span>, <em>concluding the proof</em>.</p>
+<p><em>In practice, adversarial nets represent a limited family of</em>
+<span class="math inline">\(p_g\)</span> <em>distributions via the
+function</em> <span
+class="math inline">\(\mathcal{G}(\mathbf{z};\theta_g)\)</span>, <em>and
+we optimise</em> <span class="math inline">\(\theta_g\)</span>
+<em>rather than</em> <span class="math inline">\(p_g\)</span>
+<em>itself</em>. <em>Using a multilayer perceptron to define</em> <span
+class="math inline">\(\mathcal{G}\)</span> <em>introduces multiple
+critical points in parameter space. However, the excellent performance
+of multilayer perceptrons in practice suggests that they are a
+reasonable model to use despite their lack of theoretical
+guarantees.</em></p>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>

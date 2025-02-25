@@ -7,7 +7,7 @@
     <description>Random thoughts
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Sun, 19 Jun 2022 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Getting Lazy with Cpp</title>
       <dc:creator>Andrea Bonvini</dc:creator>
@@ -16,7 +16,7 @@
       <category>Software Engineering</category>
       <category>cpp</category>
       <guid>https://lastweekspotatoes.com/posts/2022-06-20-getting-lazy-with-cpp</guid>
-      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Sun, 19 Jun 2022 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Support Vector Machines</title>
@@ -26,7 +26,7 @@
       <category>Machine Learning</category>
       <category>Classification</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-20-support-vector-machines</guid>
-      <pubDate>Mon, 19 Jul 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 20 Jul 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>The Hazard Function</title>
@@ -36,7 +36,6 @@
       <category>Computational Neuroscience</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function</guid>
       <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function/neuron.jpg" medium="image" type="image/jpeg"/>
     </item>
     <item>
       <title>A quick overview of Logistic Regression.</title>
@@ -47,7 +46,6 @@
       <category>Classification</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-a-quick-overview-of-logistic-regression</guid>
       <pubDate>Fri, 21 May 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://lastweekspotatoes.com/posts/2021-07-22-a-quick-overview-of-logistic-regression/media/sigmoid.png" medium="image" type="image/png" width="1200" height="898"/>
     </item>
     <item>
       <title>The Kernel Trick.</title>
@@ -79,7 +77,6 @@
       <category>Classification</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-the-vc-dimension</guid>
       <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://lastweekspotatoes.com/posts/2021-07-22-the-vc-dimension/media/perc.png" medium="image" type="image/png" width="474" height="372"/>
     </item>
     <item>
       <title>Generative Adversarial Networks (Original Formulation)</title>
@@ -88,10 +85,8 @@
       <description>"Generative Adversarial Networks" (Goodfellow et al.) Paper overview.</description>
       <category>Computer Vision</category>
       <category>Machine Learning</category>
-      <category>Generative Adversarial Networks</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-generative-adversarial-networks-original-formulation</guid>
       <pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://lastweekspotatoes.com/posts/2021-07-22-generative-adversarial-networks-original-formulation/media/preview.png" medium="image" type="image/png" width="590" height="390"/>
     </item>
     <item>
       <title>LOTUS Theorem in original GANs formulation.</title>
@@ -100,10 +95,8 @@
       <description>How do we apply the Law Of The Unconcious Statistician to Ian Goodfellow's original GANs value function formulation?</description>
       <category>Computer Vision</category>
       <category>Machine Learning</category>
-      <category>Generative Adversarial Networks</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation</guid>
       <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
-      <media:content url="https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation/media/preview.png" medium="image" type="image/png" width="576" height="216"/>
     </item>
     <item>
       <title>A boring Post on Linear Regression</title>

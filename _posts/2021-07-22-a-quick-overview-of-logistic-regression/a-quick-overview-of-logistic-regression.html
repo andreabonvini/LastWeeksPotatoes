@@ -21,7 +21,7 @@
 <style type="text/css">code{white-space: pre;}</style>
 <style type="text/css" data-origin="pandoc">
 pre > code.sourceCode { white-space: pre; position: relative; }
-pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span { line-height: 1.25; }
 pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
 code.sourceCode > span { color: inherit; text-decoration: inherit; }
@@ -32,7 +32,7 @@ div.sourceCode { overflow: auto; }
 }
 @media print {
 pre > code.sourceCode { white-space: pre-wrap; }
-pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode > span { display: inline-block; text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -50,16 +50,17 @@ pre.numberSource code > span > a:first-child::before
   }
 pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
 div.sourceCode
-  {   }
+  { color: #00769e; background-color: #f1f3f5; }
 @media screen {
 pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
+code span { color: #00769e; } /* Normal */
 code span.al { color: #ad0000; } /* Alert */
 code span.an { color: #5e5e5e; } /* Annotation */
-code span.at { color: #20794d; } /* Attribute */
+code span.at { color: #657422; } /* Attribute */
 code span.bn { color: #ad0000; } /* BaseN */
 code span.bu { } /* BuiltIn */
-code span.cf { color: #007ba5; } /* ControlFlow */
+code span.cf { color: #00769e; } /* ControlFlow */
 code span.ch { color: #20794d; } /* Char */
 code span.cn { color: #8f5902; } /* Constant */
 code span.co { color: #5e5e5e; } /* Comment */
@@ -73,17 +74,18 @@ code span.fl { color: #ad0000; } /* Float */
 code span.fu { color: #4758ab; } /* Function */
 code span.im { } /* Import */
 code span.in { color: #5e5e5e; } /* Information */
-code span.kw { color: #007ba5; } /* Keyword */
+code span.kw { color: #00769e; } /* Keyword */
 code span.op { color: #5e5e5e; } /* Operator */
-code span.ot { color: #007ba5; } /* Other */
+code span.ot { color: #00769e; } /* Other */
 code span.pp { color: #ad0000; } /* Preprocessor */
-code span.sc { color: #20794d; } /* SpecialChar */
+code span.sc { color: #5e5e5e; } /* SpecialChar */
 code span.ss { color: #20794d; } /* SpecialString */
 code span.st { color: #20794d; } /* String */
 code span.va { color: #111111; } /* Variable */
 code span.vs { color: #20794d; } /* VerbatimString */
 code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 </style>
+
 
   <!--radix_placeholder_meta_tags-->
   <title>A quick overview of Logistic Regression.</title>
@@ -111,7 +113,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   <!--radix_placeholder_rmarkdown_metadata-->
 
   <script type="text/json" id="radix-rmarkdown-metadata">
-  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories","preview"]}},"value":[{"type":"character","attributes":{},"value":["A quick overview of Logistic Regression."]},{"type":"character","attributes":{},"value":["A pretty basic technique for binary classification.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["05-21-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Machine Learning","Classification"]},{"type":"character","attributes":{},"value":["media/sigmoid.png"]}]}
+  {"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["title","description","author","date","output","categories"]}},"value":[{"type":"character","attributes":{},"value":["A quick overview of Logistic Regression."]},{"type":"character","attributes":{},"value":["A pretty basic technique for binary classification.\n"]},{"type":"list","attributes":{},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["name","url"]}},"value":[{"type":"character","attributes":{},"value":["Andrea Bonvini"]},{"type":"character","attributes":{},"value":["https://github.com/andreabonvini"]}]}]},{"type":"character","attributes":{},"value":["05-21-2021"]},{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["distill::distill_article"]}},"value":[{"type":"list","attributes":{"names":{"type":"character","attributes":{},"value":["self_contained"]}},"value":[{"type":"logical","attributes":{},"value":[false]}]}]},{"type":"character","attributes":{},"value":["Machine Learning","Classification"]}]}
   </script>
   <!--/radix_placeholder_rmarkdown_metadata-->
   
@@ -428,10 +430,6 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     position: relative;
     margin-bottom: 2.5em;
     margin-top: 1.5em;
-  }
-
-  .figure img {
-    width: 100%;
   }
 
   .figure .caption {
@@ -1263,7 +1261,16 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 
       // hoverable references
       $('span.citation[data-cites]').each(function() {
-        var refHtml = $('#ref-' + $(this).attr('data-cites')).html();
+        if ($(this).children()[0].nodeName == "D-FOOTNOTE") {
+          var fn = $(this).children()[0]
+          $(this).html(fn.shadowRoot.querySelector("sup"))
+          $(this).id = fn.id
+          fn.remove()
+        }
+        var refs = $(this).attr('data-cites').split(" ");
+        var refHtml = refs.map(function(ref) {
+          return "<p>" + $('#ref-' + ref).html() + "</p>";
+        }).join("\n");
         window.tippy(this, {
           allowHTML: true,
           content: refHtml,
@@ -1274,6 +1281,31 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
           placement: 'bottom-start'
         });
       });
+
+      // fix footnotes in tables (#411)
+      // replacing broken distill.pub feature
+      $('table d-footnote').each(function() {
+        // we replace internal showAtNode methode which is triggered when hovering a footnote
+        this.hoverBox.showAtNode = function(node) {
+          // ported from https://github.com/distillpub/template/pull/105/files
+          calcOffset = function(elem) {
+              let x = elem.offsetLeft;
+              let y = elem.offsetTop;
+              // Traverse upwards until an `absolute` element is found or `elem`
+              // becomes null.
+              while (elem = elem.offsetParent && elem.style.position != 'absolute') {
+                  x += elem.offsetLeft;
+                  y += elem.offsetTop;
+              }
+
+              return { left: x, top: y };
+          }
+          // https://developer.mozilla.org/en-US/docs/Web/API/HTMLElement/offsetTop
+          const bbox = node.getBoundingClientRect();
+          const offset = calcOffset(node);
+          this.show([offset.left + bbox.width, offset.top + bbox.height]);
+        }
+      })
 
       // clear polling timer
       clearInterval(tid);
@@ -1373,6 +1405,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // mark non-body figures created by knitr chunks as 100% width
     $('.layout-chunk').each(function(i, val) {
       var figures = $(this).find('img, .html-widget');
+      // ignore leaflet img layers (#106)
+      figures = figures.filter(':not(img[class*="leaflet"])')
       if ($(this).attr('data-layout') !== "l-body") {
         figures.css('width', '100%');
       } else {
@@ -1395,7 +1429,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
     // get rid of index.html references in header
     if (window.location.protocol !== "file:") {
       $('.distill-site-header a[href]').each(function(i,val) {
-        $(this).attr('href', $(this).attr('href').replace("index.html", "./"));
+        $(this).attr('href', $(this).attr('href').replace(/^index[.]html/, "./"));
       });
     }
 
@@ -1434,8 +1468,8 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
   </script>
 
   <!--/radix_placeholder_distill-->
-  <script src="a-quick-overview-of-logistic-regression_files/header-attrs-2.9/header-attrs.js"></script>
-  <script src="a-quick-overview-of-logistic-regression_files/jquery-1.11.3/jquery.min.js"></script>
+  <script src="a-quick-overview-of-logistic-regression_files/header-attrs-2.16/header-attrs.js"></script>
+  <script src="a-quick-overview-of-logistic-regression_files/jquery-3.6.0/jquery-3.6.0.min.js"></script>
   <script src="a-quick-overview-of-logistic-regression_files/popper-2.6.0/popper.min.js"></script>
   <link href="a-quick-overview-of-logistic-regression_files/tippy-6.2.7/tippy.css" rel="stylesheet" />
   <link href="a-quick-overview-of-logistic-regression_files/tippy-6.2.7/tippy-light-border.css" rel="stylesheet" />
@@ -1455,7 +1489,7 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <!--radix_placeholder_front_matter-->
 
 <script id="distill-front-matter" type="text/json">
-{"title":"A quick overview of Logistic Regression.","description":"A pretty basic technique for binary classification.","authors":[{"author":"Andrea Bonvini","authorURL":"https://github.com/andreabonvini","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-05-21T00:00:00.000+00:00","citationText":"Bonvini, 2021"}
+{"title":"A quick overview of Logistic Regression.","description":"A pretty basic technique for binary classification.","authors":[{"author":"Andrea Bonvini","authorURL":"https://github.com/andreabonvini","affiliation":"&nbsp;","affiliationURL":"#","orcidID":""}],"publishedDate":"2021-05-21T00:00:00.000+02:00","citationText":"Bonvini, 2021"}
 </script>
 
 <!--/radix_placeholder_front_matter-->
@@ -1468,66 +1502,106 @@ code span.wa { color: #5e5e5e; font-style: italic; } /* Warning */
 <h1>A quick overview of Logistic Regression.</h1>
 <!--radix_placeholder_categories-->
 <div class="dt-tags">
-<div class="dt=tag">Machine Learning</div>
-<div class="dt=tag">Classification</div>
+<div class="dt-tag">Machine Learning</div>
+<div class="dt-tag">Classification</div>
 </div>
 <!--/radix_placeholder_categories-->
 <p><p>A pretty basic technique for binary classification.</p></p>
 </div>
 
 <div class="d-byline">
-  Andrea Bonvini <a href="https://github.com/andreabonvini" class="uri">https://github.com/andreabonvini</a> 
+  Andrea Bonvini <a href="https://github.com/andreabonvini"
+class="uri">https://github.com/andreabonvini</a> 
   
 <br/>05-21-2021
 </div>
 
 <div class="d-article">
-<p>Although the name might confuse, please note that this is a <em>classiﬁcation</em> algorithm.</p>
-<p>In <em>Logistic Regression</em>, we define a set weights <span class="math inline">\(\mathbf{w}\)</span> that should be combined (through a trivial dot product) with some features <span class="math inline">\(\phi\)</span>. Considering a problem of two-class classiﬁcation, the posterior probability of class <span class="math inline">\(C_1\)</span> can be written as a logistic sigmoid function:</p>
+<p>Although the name might confuse, please note that this is a
+<em>classiﬁcation</em> algorithm.</p>
+<p>In <em>Logistic Regression</em>, we define a set weights <span
+class="math inline">\(\mathbf{w}\)</span> that should be combined
+(through a trivial dot product) with some features <span
+class="math inline">\(\phi\)</span>. Considering a problem of two-class
+classiﬁcation, the posterior probability of class <span
+class="math inline">\(C_1\)</span> can be written as a logistic sigmoid
+function:</p>
 <p><span class="math display">\[
-p(C_1\vert\phi) = \frac{1}{1+e^{-\mathbf{w}^T\phi}}=\sigma(\mathbf{w}^T\phi)
+p(C_1\vert\phi) =
+\frac{1}{1+e^{-\mathbf{w}^T\phi}}=\sigma(\mathbf{w}^T\phi)
 \]</span></p>
 <p><img src="media/sigmoid.png" /></p>
-<p>and <span class="math inline">\(p(C_2\vert\phi) = 1 - p(C_1\vert\phi)\)</span></p>
+<p>and <span class="math inline">\(p(C_2\vert\phi) = 1 -
+p(C_1\vert\phi)\)</span></p>
 <p>Applying the <em>Maximum Likelihood</em> approach…</p>
-<p>Given a dataset <span class="math inline">\(\mathcal{D} = \{(\mathbf{\phi}_n,t_n)\ \forall n\in[1,N]\}\)</span>, <span class="math inline">\(t_n \in \{0,1\}\)</span>, we have to maximize the probability of getting the right label:</p>
+<p>Given a dataset <span class="math inline">\(\mathcal{D} =
+\{(\mathbf{\phi}_n,t_n)\ \forall n\in[1,N]\}\)</span>, <span
+class="math inline">\(t_n \in \{0,1\}\)</span>, we have to maximize the
+probability of getting the right label:</p>
 <p><span class="math display">\[
-P(\mathbf{t}\vert\mathbf{\Phi},\mathbf{w}) = \prod_{n=1}^{N}y_n^{t_n}(1-y_n)^{1-t_n},\ \ y_n = \sigma(\mathbf{w}^T\phi_n)
+P(\mathbf{t}\vert\mathbf{\Phi},\mathbf{w}) =
+\prod_{n=1}^{N}y_n^{t_n}(1-y_n)^{1-t_n},\ \ y_n =
+\sigma(\mathbf{w}^T\phi_n)
 \]</span></p>
-<p>Taking the negative log of the likelihood, the <em>cross-entropy</em> error function can be deﬁned and it has to be minimized:</p>
+<p>Taking the negative log of the likelihood, the <em>cross-entropy</em>
+error function can be deﬁned and it has to be minimized:</p>
 <p><span class="math display">\[
-L(\mathbf{w}) = -\ln P(\mathbf{t}\vert\mathbf{\Phi},\mathbf{w}) = -\sum_{n=1}^{N}(t_n\ln y_n+(1-t_n)\ln(1-y_n))=\sum_{n}^NL_n
+L(\mathbf{w}) = -\ln P(\mathbf{t}\vert\mathbf{\Phi},\mathbf{w}) =
+-\sum_{n=1}^{N}(t_n\ln y_n+(1-t_n)\ln(1-y_n))=\sum_{n}^NL_n
 \]</span></p>
 <p>Differentiating and using the chain rule:</p>
 <p><span class="math display">\[
-\frac{\partial L_n}{\partial y_n}= \frac{y_n-t_n}{y_n(1-y_n)},\ \ \ \ \frac{\partial y_n}{\partial\mathbf{w}}=y_n(1-y_n)\phi_n\\
-\frac{\partial L_n}{\partial \mathbf{w}}= \frac{\partial L_n}{\partial y_n}\frac{\partial y_n}{\partial\mathbf{w}}=(y_n-t_n)\phi
+\frac{\partial L_n}{\partial y_n}= \frac{y_n-t_n}{y_n(1-y_n)},\ \ \ \
+\frac{\partial y_n}{\partial\mathbf{w}}=y_n(1-y_n)\phi_n\\
+\frac{\partial L_n}{\partial \mathbf{w}}= \frac{\partial L_n}{\partial
+y_n}\frac{\partial y_n}{\partial\mathbf{w}}=(y_n-t_n)\phi
 \]</span></p>
 <p>The gradient of the loss function is</p>
 <p><span class="math display">\[
 \nabla L(\mathbf{w}) = \sum_{n=1}^{N}(y_n-t_n)\phi_n
 \]</span></p>
-<p>It has the same form as the gradient of the sum-of-squares error function for linear regression. But in this case <span class="math inline">\(y\)</span> is not a linear function of <span class="math inline">\(\mathbf{w}\)</span> and so, there is no closed form solution. The error function is <em>convex</em> (only one optimum) and can be optimized by standard <em>gradient-based</em> optimization techniques. It is, hence, easy to adapt to the online learning setting.</p>
+<p>It has the same form as the gradient of the sum-of-squares error
+function for linear regression. But in this case <span
+class="math inline">\(y\)</span> is not a linear function of <span
+class="math inline">\(\mathbf{w}\)</span> and so, there is no closed
+form solution. The error function is <em>convex</em> (only one optimum)
+and can be optimized by standard <em>gradient-based</em> optimization
+techniques. It is, hence, easy to adapt to the online learning
+setting.</p>
 <p>Talking about <em>Multiclass Logistic Regression</em>…</p>
-<p>For the multiclass case, the posterior probabilities can be represented by a <em>softmax</em> transformation of linear functions of feature variables:</p>
+<p>For the multiclass case, the posterior probabilities can be
+represented by a <em>softmax</em> transformation of linear functions of
+feature variables:</p>
 <p><span class="math display">\[
-p(C_k\vert\phi)=y_k(\phi)=\frac{e^{\mathbf{w}_k^T\phi}}{\sum_j e^{\mathbf{w}_j^T\phi}}
+p(C_k\vert\phi)=y_k(\phi)=\frac{e^{\mathbf{w}_k^T\phi}}{\sum_j
+e^{\mathbf{w}_j^T\phi}}
 \]</span></p>
-<p><span class="math inline">\(\phi(\mathbf{x})\)</span> has been abbreviated with <span class="math inline">\(\phi\)</span> for simplicity.</p>
-<p><em>Maximum Likelihood</em> is used to directly determine the parameters</p>
+<p><span class="math inline">\(\phi(\mathbf{x})\)</span> has been
+abbreviated with <span class="math inline">\(\phi\)</span> for
+simplicity.</p>
+<p><em>Maximum Likelihood</em> is used to directly determine the
+parameters</p>
 <p><span class="math display">\[
-p(\mathbf{T}\vert\Phi,\mathbf{w}_1,\dots,\mathbf{w}_K)=\prod_{n=1}^{N}{\underset{\text{Term for correct class$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\,\,\;\;\;\;\;\;\;\;\;\;\;$}}{\underbrace{\left(\prod_{k=1}^{K}p(C_k\vert\phi_n)^{t_{nk}}\right)}=\prod_{n=1}^{N}\left(\prod_{k=1}^{K}y_{nk}^{t_{nk}}\right)}}\\
+p(\mathbf{T}\vert\Phi,\mathbf{w}_1,\dots,\mathbf{w}_K)=\prod_{n=1}^{N}{\underset{\text{Term
+for correct
+class$\;\;\;\;\;\;\;\;\;\;\;\;\;\;\,\,\;\;\;\;\;\;\;\;\;\;\;$}}{\underbrace{\left(\prod_{k=1}^{K}p(C_k\vert\phi_n)^{t_{nk}}\right)}=\prod_{n=1}^{N}\left(\prod_{k=1}^{K}y_{nk}^{t_{nk}}\right)}}\\
 \]</span></p>
-<p>where <span class="math inline">\(y_{nk}=p(C_k\vert\phi_n)=\frac{e^{\mathbf{w}_k^T\phi_n}}{\sum_j e^{\mathbf{w}_j^T\phi_n}}\)</span></p>
+<p>where <span
+class="math inline">\(y_{nk}=p(C_k\vert\phi_n)=\frac{e^{\mathbf{w}_k^T\phi_n}}{\sum_j
+e^{\mathbf{w}_j^T\phi_n}}\)</span></p>
 <p>The <em>cross-entropy</em> function is:</p>
 <p><span class="math display">\[
-L(\mathbf{w}_1,\dots,\mathbf{w}_K)=-\ln p(\mathbf{T}\vert\Phi,\mathbf{w}_1,\dots,\mathbf{w}_K)=-\sum_{n=1}^{N}\left(\sum_{k=1}^{K}t_{nk}\ln y_{nk}\right)
+L(\mathbf{w}_1,\dots,\mathbf{w}_K)=-\ln
+p(\mathbf{T}\vert\Phi,\mathbf{w}_1,\dots,\mathbf{w}_K)=-\sum_{n=1}^{N}\left(\sum_{k=1}^{K}t_{nk}\ln
+y_{nk}\right)
 \]</span></p>
 <p>Taking the gradient</p>
 <p><span class="math display">\[
-\nabla L_{\mathbf{w}_j}(\mathbf{w}_1,\dots,\mathbf{w}_K) =\sum_{n=1}^{N}(y_{nj}-t_{nj})\phi_n
+\nabla L_{\mathbf{w}_j}(\mathbf{w}_1,\dots,\mathbf{w}_K)
+=\sum_{n=1}^{N}(y_{nj}-t_{nj})\phi_n
 \]</span></p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
+<div class="sourceCode" id="cb1"><pre
+class="sourceCode r distill-force-highlighting-css"><code class="sourceCode r"></code></pre></div>
 <!--radix_placeholder_article_footer-->
 <!--/radix_placeholder_article_footer-->
 </div>
