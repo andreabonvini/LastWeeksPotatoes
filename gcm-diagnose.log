@@ -1,0 +1,83 @@
+﻿Diagnose log at 2025-02-25T21:47:09Z
+
+AppPath: /usr/local/bin/git-credential-manager
+InstallDir: /usr/local/share/gcm-core/
+Version: 2.6.1+786ab03440ddc82e807a97c0e540f5247e44cec6
+
+------------
+Diagnostic: Environment
+Skipped: False
+Success: True
+Exception: None
+Log:
+OSType: macOS
+OSVersion: 15.1.1
+Reading environment variables... OK
+ Variables:
+rvm_nightly_flag=
+rvm_hook=
+DISPLAY=/private/tmp/com.apple.launchd.04dqquUpmD/org.xquartz:0
+TERM_PROGRAM_VERSION=455
+GIT_TRACE2_PARENT_SID=fa6940e9-2920-4200-9555-64a9983e0797
+OLDPWD=/Users/z051m4
+rvm_only_path_flag=
+USER=z051m4
+TERM_PROGRAM=Apple_Terminal
+SSH_AUTH_SOCK=/private/tmp/com.apple.launchd.Mmjj0EzdHO/Listeners
+rvm_script_name=
+rvm_silent_flag=
+SHLVL=1
+rvm_ruby_file=
+rvm_ruby_bits=
+rvm_path=/Users/z051m4/.rvm
+rvm_docs_type=
+rvm_ruby_mode=
+TERM=xterm-256color
+SECURITYSESSIONID=186a2
+rvm_ruby_make=
+rvm_prefix=/Users/z051m4
+LC_CTYPE=UTF-8
+rvm_sdk=
+HOME=/Users/z051m4
+XPC_FLAGS=0x0
+rvm_bin_path=/Users/z051m4/.rvm/bin
+SHELL=/bin/zsh
+rvm_version=1.29.10 (latest)
+rvm_gemstone_url=
+rvm_use_flag=
+rvm_bin_flag=
+rvm_gemstone_package_file=
+rvm_niceness=
+__CFBundleIdentifier=com.apple.Terminal
+rvm_alias_expanded=
+PWD=/Users/z051m4/LastWeeksPotatoes
+_=/usr/local/bin/git-credential-manager
+rvm_proxy=
+LaunchInstanceID=32DC2FC3-C2A1-4414-951E-607C322912A6
+XPC_SERVICE_NAME=0
+rvm_quiet_flag=
+rvm_ruby_make_install=
+__CF_USER_TEXT_ENCODING=0x1F5:0x0:0x0
+LOGNAME=z051m4
+PATH=/usr/local/sbin:/usr/local/sbin:/Users/z051m4/anaconda3/bin:/opt/local/bin:/opt/local/sbin:/Library/Frameworks/Python.framework/Versions/3.9/bin:/Library/Frameworks/Python.framework/Versions/3.10/bin:/Library/Frameworks/Python.framework/Versions/3.7/bin:/usr/local/bin:/System/Cryptexes/App/usr/bin:/usr/bin:/bin:/usr/sbin:/sbin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/local/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/bin:/var/run/com.apple.security.cryptexd/codex.system/bootstrap/usr/appleinternal/bin:/opt/X11/bin:/Library/Apple/usr/bin:/Library/TeX/texbin:/Applications/VMware Fusion.app/Contents/Public:/Users/z051m4/.rvm/bin
+rvm_pretty_print_flag=
+TERM_SESSION_ID=7447D168-B70B-49F8-BAF2-F0BC986A5F79
+TMPDIR=/var/folders/m5/3v3jn9k178q616h05vj5ynr40000gn/T/
+
+
+------------
+Diagnostic: File system
+Skipped: False
+Success: True
+Exception: None
+Log:
+Temporary directory is '/var/folders/m5/3v3jn9k178q616h05vj5ynr40000gn/T/'...
+Checking basic file I/O...
+Writing to temporary file '/var/folders/m5/3v3jn9k178q616h05vj5ynr40000gn/T/cd1f4d948e40618bf30ccc85'... OK
+Reading from temporary file '/var/folders/m5/3v3jn9k178q616h05vj5ynr40000gn/T/cd1f4d948e40618bf30ccc85'... OK
+Deleting temporary file '/var/folders/m5/3v3jn9k178q616h05vj5ynr40000gn/T/cd1f4d948e40618bf30ccc85'... OK
+Testing IFileSystem instance...
+UserHomePath: /Users/z051m4
+UserDataDirectoryPath: /Users/z051m4/.gcm
+GetCurrentDirectory(): /Users/z051m4/LastWeeksPotatoes
+

@@ -7,7 +7,7 @@
     <description>Random thoughts
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 19 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Getting Lazy with Cpp</title>
       <dc:creator>Andrea Bonvini</dc:creator>
@@ -16,7 +16,7 @@
       <category>Software Engineering</category>
       <category>cpp</category>
       <guid>https://lastweekspotatoes.com/posts/2022-06-20-getting-lazy-with-cpp</guid>
-      <pubDate>Sun, 19 Jun 2022 00:00:00 +0000</pubDate>
+      <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Support Vector Machines</title>
@@ -54,8 +54,7 @@
       <description>What is the kernel trick? What's the main advantage of this technique?</description>
       <category>Machine Learning</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-the-kernel-trick</guid>
-      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
-      <media:content url="https://lastweekspotatoes.com/posts/2021-07-22-the-kernel-trick/images/preview.png" medium="image" type="image/png" width="700" height="614"/>
+      <pubDate>Mon, 17 May 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>How to call a C function from Python.</title>
