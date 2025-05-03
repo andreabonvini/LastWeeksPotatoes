@@ -7,14 +7,20 @@
     <description>Random thoughts
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Mon, 20 Jun 2022 00:00:00 +0000</lastBuildDate>
+    <lastBuildDate>Thu, 01 May 2025 00:00:00 +0000</lastBuildDate>
+    <item>
+      <title>Attention is all you need</title>
+      <dc:creator>Andrea Bonvini</dc:creator>
+      <link>https://lastweekspotatoes.com/posts/2025-03-01-attention-is-all-you-need</link>
+      <description>A primer on the Transformer architecture.</description>
+      <guid>https://lastweekspotatoes.com/posts/2025-03-01-attention-is-all-you-need</guid>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
+    </item>
     <item>
       <title>Getting Lazy with Cpp</title>
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2022-06-20-getting-lazy-with-cpp</link>
       <description>How to easily create a lazy generator in cpp.</description>
-      <category>Software Engineering</category>
-      <category>cpp</category>
       <guid>https://lastweekspotatoes.com/posts/2022-06-20-getting-lazy-with-cpp</guid>
       <pubDate>Mon, 20 Jun 2022 00:00:00 +0000</pubDate>
     </item>
@@ -23,8 +29,6 @@
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-20-support-vector-machines</link>
       <description>The math behind the Support Vector Machines algorithm.</description>
-      <category>Machine Learning</category>
-      <category>Classification</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-20-support-vector-machines</guid>
       <pubDate>Tue, 20 Jul 2021 00:00:00 +0000</pubDate>
     </item>
@@ -33,7 +37,6 @@
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function</link>
       <description>What is the Hazard Function in the context of Survival Analysis? How can we apply it in Computational Neuroscience?</description>
-      <category>Computational Neuroscience</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-20-the-hazard-function</guid>
       <pubDate>Sat, 10 Jul 2021 00:00:00 +0000</pubDate>
     </item>
@@ -42,8 +45,6 @@
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-22-a-quick-overview-of-logistic-regression</link>
       <description>A pretty basic technique for binary classification.</description>
-      <category>Machine Learning</category>
-      <category>Classification</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-a-quick-overview-of-logistic-regression</guid>
       <pubDate>Fri, 21 May 2021 00:00:00 +0000</pubDate>
     </item>
@@ -52,28 +53,14 @@
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-22-the-kernel-trick</link>
       <description>What is the kernel trick? What's the main advantage of this technique?</description>
-      <category>Machine Learning</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-the-kernel-trick</guid>
-      <pubDate>Mon, 17 May 2021 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>How to call a C function from Python.</title>
-      <dc:creator>Andrea Bonvini</dc:creator>
-      <link>https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python</link>
-      <description>Need to speed up things by calling a C function from your Python script? Check this out.</description>
-      <category>Software Engineering</category>
-      <category>c</category>
-      <category>python</category>
-      <guid>https://lastweekspotatoes.com/posts/2021-07-21-how-to-call-a-c-function-from-python</guid>
-      <pubDate>Wed, 03 Mar 2021 00:00:00 +0000</pubDate>
+      <pubDate>Tue, 18 May 2021 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>The VC dimension.</title>
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-22-the-vc-dimension</link>
       <description>A quick explanation of the VC dimension.</description>
-      <category>Machine Learning</category>
-      <category>Classification</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-the-vc-dimension</guid>
       <pubDate>Sun, 14 Feb 2021 00:00:00 +0000</pubDate>
     </item>
@@ -82,8 +69,6 @@
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-22-generative-adversarial-networks-original-formulation</link>
       <description>"Generative Adversarial Networks" (Goodfellow et al.) Paper overview.</description>
-      <category>Computer Vision</category>
-      <category>Machine Learning</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-generative-adversarial-networks-original-formulation</guid>
       <pubDate>Mon, 14 Dec 2020 00:00:00 +0000</pubDate>
     </item>
@@ -92,8 +77,6 @@
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation</link>
       <description>How do we apply the Law Of The Unconcious Statistician to Ian Goodfellow's original GANs value function formulation?</description>
-      <category>Computer Vision</category>
-      <category>Machine Learning</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-22-lotus-theorem-in-original-gans-formulation</guid>
       <pubDate>Fri, 11 Dec 2020 00:00:00 +0000</pubDate>
     </item>
@@ -102,8 +85,6 @@
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2021-07-20-a-boring-post-on-linear-regression</link>
       <description>A visual and mathematical overview of Linear Regression.</description>
-      <category>Machine Learning</category>
-      <category>Regression</category>
       <guid>https://lastweekspotatoes.com/posts/2021-07-20-a-boring-post-on-linear-regression</guid>
       <pubDate>Sat, 12 Sep 2020 00:00:00 +0000</pubDate>
     </item>

@@ -9,10 +9,6 @@ date: 09-12-2020
 output:
   distill::distill_article:
     self_contained: false
-categories:
-  - Machine Learning
-  - Regression
-  
 ---
 *Regression* is one of the main problems tackled by *machine learning*.
 

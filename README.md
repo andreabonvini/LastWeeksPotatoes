@@ -2,3 +2,10 @@
 # Last Week's Potatoes
 
 Source code for my personal blog.
+
+```code
+# Run from RStudio prompt in order to correctly render the blogposts locally.
+install.packages('rmarkdown')
+install.packages('distill')
+install.packages('reticulate')
+```

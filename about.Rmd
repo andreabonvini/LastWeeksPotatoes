@@ -7,7 +7,7 @@ description: |
 
 <img src="images/me.png" style="display:block; margin: 0 auto; width: 33%">
 
-My name is ***Andrea Bonvini*** and I recently completed a MSc in Biomedical Engineering at Politecnico di Milano, this site is a sort of collection of notes and thoughts on topics I'm passionate about (mainly *Computer Vision*, *Machine Learning*, and *Computational Neuroscience*).
+My name is ***Andrea Bonvini***, I hold a MSc in Biomedical Engineering from Politecnico di Milano and I'm currently working as an Applied Machine Learning Engineer in eastern Switzerland `r library(emojifont); emoji(search_emoji('switzerland'))`. This site is a collection of technical notes and thoughts on topics I'm passionate about.
   
   If you're wondering where the title of the blog comes from:
     
@@ -37,12 +37,5 @@ My name is ***Andrea Bonvini*** and I recently completed a MSc in Biomedical Eng
   <i class="fa fa-linkedin fa-stack-1x fa-inverse"></i>
 </span>
 <span class="sr-only">LinkedIn</span>
-</a>
-</a>
-<a style='color: #d46708' href="https://www.instagram.com/andrea.bonvini" title="Instagram" class = 'social-icon'><span class="fa-stack fa-lg" aria-hidden="true">
-  <i class="fa fa-circle fa-stack-2x"></i>
-  <i class="fa fa-instagram fa-stack-1x fa-inverse"></i>
-</span>
-<span class="sr-only">Instagram</span>
 </a>
 </div>

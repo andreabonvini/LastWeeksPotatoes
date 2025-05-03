@@ -9,8 +9,6 @@ date: 07-10-2021
 output:
   distill::distill_article:
     self_contained: false
-categories:
-  - Computational Neuroscience
 ---
 In *Survival Analysis* we are interested in understanding the *risk* of an event happening at a particular point in time, where time is a continuous variable.
 

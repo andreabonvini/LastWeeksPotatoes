@@ -9,9 +9,6 @@ date: 12-11-2020
 output:
   distill::distill_article:
     self_contained: false
-categories:
-  - Computer Vision
-  - Machine Learning
 ---
 
 

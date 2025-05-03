@@ -9,10 +9,6 @@ date: 06-20-2022
 output:
   distill::distill_article:
     self_contained: false
-categories:
-  - Software Engineering
-  - cpp
-  
 ---
 
 When coding in Python, it may happen that we make use of the so-called *generators*. A *generator* is a function that contains at least one *yield* statement (it may contain other yield or return statements). Both yield and return will return some value from this function.

@@ -9,8 +9,6 @@ date: 05-18-2021
 output:
   distill::distill_article:
     self_contained: false
-categories:
-  - Machine Learning
 ---
 
 
