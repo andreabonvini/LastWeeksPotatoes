@@ -7,30 +7,14 @@
     <description>Random thoughts
 </description>
     <generator>Distill</generator>
-    <lastBuildDate>Sun, 17 Aug 2025 00:00:00 +0000</lastBuildDate>
-    <item>
-      <title>AI for Drug Discovery - A Primer for newbies</title>
-      <dc:creator>Andrea Bonvini</dc:creator>
-      <link>https://lastweekspotatoes.com/posts/2025-08-17-ai-for-drug-discovery-primer</link>
-      <description>What the hell is drug-discovery?</description>
-      <guid>https://lastweekspotatoes.com/posts/2025-08-17-ai-for-drug-discovery-primer</guid>
-      <pubDate>Sun, 17 Aug 2025 00:00:00 +0000</pubDate>
-    </item>
-    <item>
-      <title>Neural Network Quantization</title>
-      <dc:creator>Andrea Bonvini</dc:creator>
-      <link>https://lastweekspotatoes.com/posts/2025-06-01-quantization</link>
-      <description>How quantization really works.</description>
-      <guid>https://lastweekspotatoes.com/posts/2025-06-01-quantization</guid>
-      <pubDate>Sun, 01 Jun 2025 00:00:00 +0000</pubDate>
-    </item>
+    <lastBuildDate>Thu, 01 May 2025 00:00:00 +0000</lastBuildDate>
     <item>
       <title>Attention is all you need</title>
       <dc:creator>Andrea Bonvini</dc:creator>
       <link>https://lastweekspotatoes.com/posts/2025-03-01-attention-is-all-you-need</link>
       <description>A primer on the Transformer architecture.</description>
       <guid>https://lastweekspotatoes.com/posts/2025-03-01-attention-is-all-you-need</guid>
-      <pubDate>Wed, 30 Apr 2025 00:00:00 +0000</pubDate>
+      <pubDate>Thu, 01 May 2025 00:00:00 +0000</pubDate>
     </item>
     <item>
       <title>Getting Lazy with Cpp</title>
