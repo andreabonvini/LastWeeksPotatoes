@@ -157,20 +157,22 @@ In our example with "cool," the query vector for "cool" in the first sentence mi
 
 ### Mathematical Formulation
 
-The values $V$ are updated as follows:
+The attention mechanism produces output representations as follows:
 
 $$
-\color{darkgreen}{V^{'}}=\text{Attention}(\color{purple}Q,\color{darkorange}K,\color{darkgreen}V) = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}}\right)\color{darkgreen}V 
-$$Taking a closer look at the nominator of the softmax argument, we see that it consists of a sort of similarity matrix between the query vectors stored in $\color{purple}Q$ and the key vectors stored in $\color{darkorange}K$
+\color{black}{Z}=\text{Attention}(\color{purple}Q,\color{darkorange}K,\color{darkgreen}V) = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}}\right)\color{darkgreen}V 
+$$
+
+Taking a closer look at the nominator of the softmax argument, we see that it consists of a sort of similarity matrix between the query vectors stored in $\color{purple}Q$ and the key vectors stored in $\color{darkorange}K$
 
 $$
 \begin{align}\color{purple}Q\color{darkorange}K^T &=\begin{bmatrix}\mathbf{\color{purple}{q}}^T_{\text{(Today)}} \\\mathbf{\color{purple}{q}}^T_{\text{(the)}} \\\mathbf{\color{purple}{q}}^T_{\text{(weather)}} \\\mathbf{\color{purple}{q}}^T_{\text{(was)}} \\\mathbf{\color{purple}{q}}^T_{\text{(quite)}} \\\mathbf{\color{purple}{q}}^T_{\text{(cool)}} \\\end{bmatrix}\begin{bmatrix}\mathbf{\color{darkorange}{k}}_{\text{(Today)}} &\mathbf{\color{darkorange}{k}}_{\text{(the)}} &\mathbf{\color{darkorange}{k}}_{\text{(weather)}} &\mathbf{\color{darkorange}{k}}_{\text{(was)}} &\mathbf{\color{darkorange}{k}}_{\text{(quite)}} &\mathbf{\color{darkorange}{k}}_{\text{(cool)}} \end{bmatrix} \\ \\\color{purple}Q\color{darkorange}K^T &=\begin{bmatrix}\mathbf{\color{purple}{q}}_{\text{(Today)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(Today)}} && \mathbf{\color{purple}{q}}_{\text{(Today)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(the)}} && \mathbf{\color{purple}{q}}_{\text{(Today)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(weather)}} && \mathbf{\color{purple}{q}}_{\text{(Today)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(was)}} && \mathbf{\color{purple}{q}}_{\text{(Today)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(quite)}} && \mathbf{\color{purple}{q}}_{\text{(Today)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(cool)}} \\\mathbf{\color{purple}{q}}_{\text{(the)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(Today)}} && \mathbf{\color{purple}{q}}_{\text{(the)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(the)}} && \mathbf{\color{purple}{q}}_{\text{(the)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(weather)}} && \mathbf{\color{purple}{q}}_{\text{(the)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(was)}} && \mathbf{\color{purple}{q}}_{\text{(the)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(quite)}} && \mathbf{\color{purple}{q}}_{\text{(the)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(cool)}} \\\mathbf{\color{purple}{q}}_{\text{(weather)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(Today)}} && \mathbf{\color{purple}{q}}_{\text{(weather)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(the)}} && \mathbf{\color{purple}{q}}_{\text{(weather)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(weather)}} && \mathbf{\color{purple}{q}}_{\text{(weather)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(was)}} && \mathbf{\color{purple}{q}}_{\text{(weather)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(quite)}} && \mathbf{\color{purple}{q}}_{\text{(weather)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(cool)}} \\\mathbf{\color{purple}{q}}_{\text{(was)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(Today)}} && \mathbf{\color{purple}{q}}_{\text{(was)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(the)}} && \mathbf{\color{purple}{q}}_{\text{(was)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(weather)}} && \mathbf{\color{purple}{q}}_{\text{(was)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(was)}} && \mathbf{\color{purple}{q}}_{\text{(was)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(quite)}} && \mathbf{\color{purple}{q}}_{\text{(was)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(cool)}} \\\mathbf{\color{purple}{q}}_{\text{(quite)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(Today)}} && \mathbf{\color{purple}{q}}_{\text{(quite)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(the)}} && \mathbf{\color{purple}{q}}_{\text{(quite)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(weather)}} && \mathbf{\color{purple}{q}}_{\text{(quite)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(was)}} && \mathbf{\color{purple}{q}}_{\text{(quite)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(quite)}} && \mathbf{\color{purple}{q}}_{\text{(quite)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(cool)}} \\\mathbf{\color{purple}{q}}_{\text{(cool)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(Today)}} && \mathbf{\color{purple}{q}}_{\text{(cool)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(the)}} && \mathbf{\color{purple}{q}}_{\text{(cool)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(weather)}} && \mathbf{\color{purple}{q}}_{\text{(cool)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(was)}} && \mathbf{\color{purple}{q}}_{\text{(cool)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(quite)}} && \mathbf{\color{purple}{q}}_{\text{(cool)}}\cdot\mathbf{\color{darkorange}{k}}_{\text{(cool)}}\end{bmatrix}\end{align}
 $$
 
-After normalizing the values by $\sqrt{d_k}$ and taking the $\text{softmax}$ we see that the new value vectors stored in $\color{darkgreen}{V^{'}}$ will be the result of a weighted sum of the old ones.
+After normalizing by $\sqrt{d_k}$ and taking the $\text{softmax}$, we see that the output representations stored in $\color{black}{Z}$ are weighted sums of the value vectors.
 
 $$
-\color{darkgreen}{V^{'}} = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}}\right)\color{darkgreen}V =\begin{bmatrix}
+\color{black}{Z} = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}}\right)\color{darkgreen}V =\begin{bmatrix}
 0.40 && 
 0.10 && 
 0.10 && 
@@ -209,65 +211,65 @@ $$
 0.2
 \end{bmatrix}\color{green}{
 \begin{bmatrix}
-\mathbf{V}^T_{\text{(Today)}} \\
-\mathbf{V}^T_{\text{(the)}} \\
-\mathbf{V}^T_{\text{(weather)}} \\
-\mathbf{V}^T_{\text{(was)}} \\
-\mathbf{V}^T_{\text{(quite)}} \\
-\mathbf{V}^T_{\text{(cool)}} \\
+\mathbf{v}^T_{\text{(Today)}} \\
+\mathbf{v}^T_{\text{(the)}} \\
+\mathbf{v}^T_{\text{(weather)}} \\
+\mathbf{v}^T_{\text{(was)}} \\
+\mathbf{v}^T_{\text{(quite)}} \\
+\mathbf{v}^T_{\text{(cool)}} \\
 \end{bmatrix}
 }
 $$
 
-And, as anticipated, we may have that the old value vector for the word "weather" $\mathbf{V}^T_{\text{(weather)}}$ will have the chance to influence the new value vector for the word "cool" $\mathbf{V^{'}}^T_{\text{(cool)}}$.
+And, as anticipated, the value vector for the word "weather" $\color{green}{\mathbf{v}}^T_{\text{(weather)}}$ will influence the output representation for the word "cool" $\mathbf{z}^T_{\text{(cool)}}$.
 
 $$
-\color{darkgreen}{
+\color{black}{
 \begin{bmatrix}
-\mathbf{V^{'}}^T_{\text{(Today)}} \\
-\mathbf{V^{'}}^T_{\text{(the)}} \\
-\mathbf{V^{'}}^T_{\text{(weather)}} \\
-\mathbf{V^{'}}^T_{\text{(was)}} \\
-\mathbf{V^{'}}^T_{\text{(quite)}} \\
-\mathbf{V^{'}}^T_{\text{(cool)}} \\
+\mathbf{z}^T_{\text{(Today)}} \\
+\mathbf{z}^T_{\text{(the)}} \\
+\mathbf{z}^T_{\text{(weather)}} \\
+\mathbf{z}^T_{\text{(was)}} \\
+\mathbf{z}^T_{\text{(quite)}} \\
+\mathbf{z}^T_{\text{(cool)}} \\
 \end{bmatrix}
 } =\begin{bmatrix}
-\color{rgba(0,135,0,0.8)}{0.40\mathbf{V}^T_{\text{(Today)}}} +
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(the)}}} + 
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(weather)}}} + 
-\color{rgba(0,135,0,0.4)}{0.20\mathbf{V}^T_{\text{(was)}}} + 
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(quite)}}} + 
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(cool)}}} \\
-\color{rgba(0,135,0,0.1)}{0.05\mathbf{V}^T_{\text{(Today)}}} + 
-\color{rgba(0,135,0,0.8)}{0.40\mathbf{V}^T_{\text{(the)}}} + 
-\color{rgba(0,135,0,0.3)}{0.15\mathbf{V}^T_{\text{(weather)}}} + 
-\color{rgba(0,135,0,0.4)}{0.20\mathbf{V}^T_{\text{(was)}}} + 
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(quite)}}} + 
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(cool)}}} \\
-\color{rgba(0,135,0,0.3)}{0.15\mathbf{V}^T_{\text{(Today)}}} +
-\color{rgba(0,135,0,0.4)}{0.20\mathbf{V}^T_{\text{(the)}}} + 
-\color{rgba(0,135,0,0.7)}{0.35\mathbf{V}^T_{\text{(weather)}}} + 
-\color{rgba(0,135,0,0.3)}{0.15\mathbf{V}^T_{\text{(was)}}} + 
-\color{rgba(0,135,0,0.1)}{0.05\mathbf{V}^T_{\text{(quite)}}} + 
-\color{rgba(0,135,0,0.2)}{0.1\mathbf{V}^T_{\text{(cool)}}} \\
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(Today)}}} +
-\color{rgba(0,135,0,0.1)}{0.05\mathbf{V}^T_{\text{(the)}}} + 
-\color{rgba(0,135,0,0.3)}{0.15\mathbf{V}^T_{\text{(weather)}}} +
-\color{rgba(0,135,0,0.6)}{0.30\mathbf{V}^T_{\text{(was)}}} + 
-\color{rgba(0,135,0,0.3)}{0.15\mathbf{V}^T_{\text{(quite)}}} + 
-\color{rgba(0,135,0,0.5)}{0.25\mathbf{V}^T_{\text{(cool)}}} \\
-\color{rgba(0,135,0,0.3)}{0.15\mathbf{V}^T_{\text{(Today)}}} + 
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(the)}}} + 
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(weather)}}} +
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(was)}}} + 
-\color{rgba(0,135,0,0.7)}{0.35\mathbf{V}^T_{\text{(quite)}}} + 
-\color{rgba(0,135,0,0.2)}{0.10\mathbf{V}^T_{\text{(cool)}}} \\
-\color{rgba(0,135,0,0.1)}{0.05\mathbf{V}^T_{\text{(Today)}}} +
-\color{rgba(0,135,0,0.1)}{0.05\mathbf{V}^T_{\text{(the)}}} + 
-\color{rgba(0,135,0,1.0)}{\underline{0.60\mathbf{V}^T_{\text{(weather)}}}} +
-\color{rgba(0,135,0,0.1)}{0.05\mathbf{V}^T_{\text{(was)}}} + 
-\color{rgba(0,135,0,0.1)}{0.05{\mathbf{V}^T_{\text{(quite)}}}} + 
-\color{rgba(0,135,0,0.4)}{0.2\mathbf{V}^T_{\text{(cool)}}}
+\color{rgba(0,135,0,0.8)}{0.40\mathbf{v}^T_{\text{(Today)}}} +
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(the)}}} + 
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(weather)}}} + 
+\color{rgba(0,135,0,0.4)}{0.20\mathbf{v}^T_{\text{(was)}}} + 
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(quite)}}} + 
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(cool)}}} \\
+\color{rgba(0,135,0,0.1)}{0.05\mathbf{v}^T_{\text{(Today)}}} + 
+\color{rgba(0,135,0,0.8)}{0.40\mathbf{v}^T_{\text{(the)}}} + 
+\color{rgba(0,135,0,0.3)}{0.15\mathbf{v}^T_{\text{(weather)}}} + 
+\color{rgba(0,135,0,0.4)}{0.20\mathbf{v}^T_{\text{(was)}}} + 
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(quite)}}} + 
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(cool)}}} \\
+\color{rgba(0,135,0,0.3)}{0.15\mathbf{v}^T_{\text{(Today)}}} +
+\color{rgba(0,135,0,0.4)}{0.20\mathbf{v}^T_{\text{(the)}}} + 
+\color{rgba(0,135,0,0.7)}{0.35\mathbf{v}^T_{\text{(weather)}}} + 
+\color{rgba(0,135,0,0.3)}{0.15\mathbf{v}^T_{\text{(was)}}} + 
+\color{rgba(0,135,0,0.1)}{0.05\mathbf{v}^T_{\text{(quite)}}} + 
+\color{rgba(0,135,0,0.2)}{0.1\mathbf{v}^T_{\text{(cool)}}} \\
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(Today)}}} +
+\color{rgba(0,135,0,0.1)}{0.05\mathbf{v}^T_{\text{(the)}}} + 
+\color{rgba(0,135,0,0.3)}{0.15\mathbf{v}^T_{\text{(weather)}}} +
+\color{rgba(0,135,0,0.6)}{0.30\mathbf{v}^T_{\text{(was)}}} + 
+\color{rgba(0,135,0,0.3)}{0.15\mathbf{v}^T_{\text{(quite)}}} + 
+\color{rgba(0,135,0,0.5)}{0.25\mathbf{v}^T_{\text{(cool)}}} \\
+\color{rgba(0,135,0,0.3)}{0.15\mathbf{v}^T_{\text{(Today)}}} + 
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(the)}}} + 
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(weather)}}} +
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(was)}}} + 
+\color{rgba(0,135,0,0.7)}{0.35\mathbf{v}^T_{\text{(quite)}}} + 
+\color{rgba(0,135,0,0.2)}{0.10\mathbf{v}^T_{\text{(cool)}}} \\
+\color{rgba(0,135,0,0.1)}{0.05\mathbf{v}^T_{\text{(Today)}}} +
+\color{rgba(0,135,0,0.1)}{0.05\mathbf{v}^T_{\text{(the)}}} + 
+\color{rgba(0,135,0,1.0)}{\underline{0.60\mathbf{v}^T_{\text{(weather)}}}} +
+\color{rgba(0,135,0,0.1)}{0.05\mathbf{v}^T_{\text{(was)}}} + 
+\color{rgba(0,135,0,0.1)}{0.05{\mathbf{v}^T_{\text{(quite)}}}} + 
+\color{rgba(0,135,0,0.4)}{0.2\mathbf{v}^T_{\text{(cool)}}}
 \end{bmatrix}
 $$
 
@@ -489,7 +491,7 @@ $$
 \end{align}
 $$
 
-Since the dot products that contain any "\<PAD\>" token shouldn't influence the final $\color{green}V$alue vectors we add a padding mask $M_{\text{pad}}$ to ensure padded tokens don't influence the final attention matrix:
+Since the dot products that contain any "\<PAD\>" token shouldn't influence the final output representations we add a padding mask $M_{\text{pad}}$ to ensure padded tokens don't influence the final attention output:
 
 $$
 M_{\text{pad}} = 
@@ -505,15 +507,16 @@ M_{\text{pad}} =
 \end{bmatrix}
 $$
 
-The final $\color{green}V$alue update with padding mask applied will then look like this:
+The final attention output with padding mask applied will then look like this:
 
 $$
-\color{darkgreen}{V^{'}} = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}+M_\text{pad}}\right)\color{darkgreen}V =
+\color{black}{Z} = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}+M_\text{pad}}\right)\color{darkgreen}V =
 $$
+
 If you need a refresher on the *softmax* function to understand why $-\infty$ terms will map to $0$ (and have null contribution) here it is:
 
 $$
-\text{softmax}(z_i) = \frac{e^{z_i}}{\sum_{j=1}^{n_e}e^{z_j}} 
+\text{softmax}(x_i) = \frac{e^{x_i}}{\sum_{j=1}^{n_e}e^{x_j}} 
 $$
 
 ### Encoder Input during Inference
@@ -630,10 +633,10 @@ M_{\text{combined}} =
 \end{bmatrix}
 $$
 
-The final $\color{green}V$alue update with both masks applied will then look like:
+The final attention output with both masks applied will then look like:
 
 $$
-\color{darkgreen}{V^{'}} = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}+M_\text{combined}}\right)\color{darkgreen}V
+\color{black}{Z} = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}+M_\text{combined}}\right)\color{darkgreen}V
 $$
 
 #### Cross-attention
@@ -717,10 +720,10 @@ M_{\text{cross}} =
 \end{bmatrix}
 $$
 
-The final $\color{green}V$alue update in cross-attention with padding masks applied will then look like:
+The final attention output in cross-attention with padding masks applied will then look like:
 
 $$
-\color{darkgreen}{V^{'}} = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}+M_\text{cross}}\right)\color{darkgreen}V
+\color{black}{Z} = \text{softmax}\left({\frac{\color{purple}Q\color{darkorange}K^T}{\sqrt{d_k}}+M_\text{cross}}\right)\color{darkgreen}V
 $$
 
 This cross-attention mechanism allows the decoder to focus on relevant parts of the encoder's output at each decoding step. For example:
